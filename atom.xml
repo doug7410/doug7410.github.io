@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://doug7410.github.io/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-01T13:50:48+00:00</updated>
+  <updated>2014-08-01T14:54:20+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,5 +12,14 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[First Steps With Ruby and Web Development]]></title>
+    <link href="http://doug7410.github.io/blog/2014/08/01/first-steps-with-ruby-and-web-development/"/>
+    <updated>2014-08-01T14:14:11+00:00</updated>
+    <id>http://doug7410.github.io/blog/2014/08/01/first-steps-with-ruby-and-web-development</id>
+    <content type="html"><![CDATA[<p>*this is a sample post</p>
+]]></content>
+  </entry>
   
 </feed>
