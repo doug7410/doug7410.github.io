@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | My Octopress Blog]]></title>
   <link href="http://doug7410.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-01T15:01:00+00:00</updated>
+  <updated>2014-08-01T15:05:38+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,7 +18,141 @@
     <link href="http://doug7410.github.io/blog/2014/08/01/first-steps-with-ruby-and-web-development/"/>
     <updated>2014-08-01T14:14:11+00:00</updated>
     <id>http://doug7410.github.io/blog/2014/08/01/first-steps-with-ruby-and-web-development</id>
-    <content type="html"><![CDATA[<p>*this is a sample post</p>
+    <content type="html"><![CDATA[<h3><a href="http://dsp-websolutions.com/portfolio/wp-content/uploads/2014/06/ruby-on-rails-tutorials-3.jpg"><img class="alignnone  wp-image-153" src="http://dsp-websolutions.com/portfolio/wp-content/uploads/2014/06/ruby-on-rails-tutorials-3-300x149.jpg" alt="ruby-on-rails-tutorials-3" width="332" height="165" /></a></h3>
+
+
+<h3>All I want to do is be a professional web developer, make some money, love what I do, and live happily ever after.</h3>
+
+
+<p>Not to much to ask right? So where do I start? My journey actually began a while ago and I have some basic knowledge. I know HTML, CSS, some PHP and a little javascrpt. But that alone is not enough to get a job in today&rsquo;s market. Now adays, you need more that that. There are basically two types of web developers.</p>
+
+<ol>
+  <li>Front End</li>
+  <li>Back End</li>
+</ol>
+
+
+<p>The differences are ilustrated very well in this youtube video. <a href="http://www.youtube.com/watch?v=zXqs6X0lzKI" target="_blank"><a href="http://www.youtube.com/watch?v=zXqs6X0lzKI">http://www.youtube.com/watch?v=zXqs6X0lzKI</a></a></p>
+
+<p>A <strong>front end</strong> developer deals with what you see in your web browser. The HTML, CSS and Javascript. They do things like design and build sites and user interface.</p>
+
+<p>A <strong>back end</strong> developer deals with the server side scripting, databases, and behind the sceens magic that powers the web. Especially on sites where the user creates the content (like Facebook for example).</p>
+
+<h3>I became interested in back end a long time ago when I learned you can create a site dynamically from a database.</h3>
+
+
+<p>For example, if you have a site that sells video games, you can have a database with all the games and use it to dynamically create a page for every game in the database, while actually only having to write code for  a single page. Imagine if you have to code up a separate page for every game in your database. And then imagine you have 5000 games! Yikes!<!--more--></p>
+
+<p>So to me, there is a certain kind of magicall-ness to back end web development. I know it&rsquo;s not as cool as levitating a super model, but it&rsquo;s magical to me. So I know I want to do <strong>back end</strong>, but how do I learn that? At the time of this epiphany(around 2006), the answer to that was to learn <strong>PHP</strong>. I know that was a long time ago, so you must be thinking I&rsquo;m an expert PHP guy right? Sorry to say, that&rsquo;s not the case.</p>
+
+<p>I used to make sites in Dreamweaver, and Dreamweaver has some built in tools to write PHP for you. So for a long while that&rsquo;s what I did. Which in the end, got me no where because I really didn&rsquo;t know what the heck I was doing. I didn&rsquo;t decide to actually try to learn how to use PHP the right way until about a year ago. I started by watching videos on Lynda.com . They were good, but I was on my own, since Lynda.com didn&rsquo;t really have any instructor feedback or assistance. I got stuck A LOT and kind of gave up on that. Then I discoverd an online school called O&#8217;Reilly School of Technology. They happed to have a cirtificate course called PHP/SQL Programming . PERFECT! Right? Well after about a year of doing this course ( with a few little breaks here and there) I didn&rsquo;t feel it&rsquo;s going to make me the <em><strong>modern rockstar developer </strong></em>I am striving to be. There are a few issues I have with them, but I wont go into that here.</p>
+
+<p>Fast forward to a couple of months ago (5/2014). I&rsquo;ve come to the conclusion I need a school, with real teachers, and an active commuity of students , AND a cariculum designed to give me the skill set of a <strong>modern web developer</strong>. I found (through a lot of searching) <strong><a href="http://www.gotealeaf.com" target="_blank">Tealeaf Academy shcool for Ruby on Rails Developers</a> !</strong> They offer a four month/ three course program that takes you from zero to Ruby super hero. Now I&rsquo;m not saying I believe  I&rsquo;m going to finish the program and then get a job the next day. I know it will take a lot of work after the program is over. You don&rsquo;t get years of experience in four months obviously, but I do think it will give me the foundation to get those years of experience.  So this is where I&rsquo;m at. I&rsquo;ve been doing the course for the last month and I couldn&rsquo;t be happier.</p>
+
+<p>Here is a list of what I&rsquo;ve learned so far.</p>
+
+<h3>My time spent learning PHP was not wasted!</h3>
+
+
+<p>Ruby and PHP are not that different in some ways. They are both programming languages. They use the same concepts. Ruby is just a lot more pleasent to write (in my opinion). My first days with Tealeaf were spent on the pre-course. It&rsquo;s meant to be an introducion to programming and ruby. Since I allready know the bascics of programming, this was pretty easy for me. Ruby has it&rsquo;s own syntax of course, but it&rsquo;s very easy to pick up and very easy to read.</p>
+
+<p><strong>Here&rsquo;s a line of ruby code</strong></p>
+
+<p><code lang="ruby"> cards.each { |card| puts card }</code></p>
+
+<p>Easy right? Here&rsquo;s the same thing in PHP</p>
+
+<p><code lang="php">
+for($i = 0; $i&lt;count($cards); $i++){
+echo $cards[$i];
+}
+</code></p>
+
+<p>It&rsquo;s doing the same thing, but the Ruby code is so much easier to read and write, not to mention faster.
+</pre></p>
+
+<h3>Command line</h3>
+
+
+<p>I finally learned to use the command line! It&rsquo;s really not that hard. The commands I find myself using most are</p>
+
+<ul>
+  <li>cd - change directory</li>
+  <li>ls - list files in the current directory</li>
+  <li>mkdir - make a directory</li>
+  <li>touch - create a file</li>
+  <li>git - use git to make commits and push to git hub</li>
+</ul>
+
+
+
+
+<h3>Git and Github</h3>
+
+
+<p>If you want to be a modern web developer you HAVE to learn to use Git and Github. Github is used for storing your code and allows you to see all the versions you saved. It also allows teams to work on collaborate on a project and people to download your code to play with it. Very important and very big deal in the web development world.</p>
+
+<h3>Time management for web developers</h3>
+
+
+<p>I know this has nothing to do with Ruby, but it&rsquo;s worth mentioning. As it turns out there are two kinds of people in the business world. Makers and Managers,  and they need to manage their time differently to achieve maximum efficiency. Managers can do the 9-5 thing and cut up their day into nice little one or two hour chunks. Makers on the other hand need a nice long chunk of time to get something done. They don&rsquo;t do well with interruptions. The more they can focus on their craft, the happier they will be. I know this is true from personal experience. I love having a nice Saturday all to myself to work on a project. Here&rsquo;s an article all about this phenomenon <a href="http://www.paulgraham.com/makersschedule.html"><a href="http://www.paulgraham.com/makersschedule.html">http://www.paulgraham.com/makersschedule.html</a></a></p>
+
+<h3>How to build an application from start to finish</h3>
+
+
+<p>There is a certain workflow to efficiently writing a program . It&rsquo;s very difficult to just start witing code. You need to figure out the logic and then turn that logic into working code. Here is the magic formula.</p>
+
+<ul>
+        <li>Come up with requirements/specifications, which will determine the scope.</li>
+  <li>Application logic; sequence of steps. Write the logic in psudo code</li>
+  <li>Translation of those steps into real code</li>
+  <li>Run code to verify logic.</li>
+</ul>
+
+
+
+
+<h3>Object Oriented Programming with Ruby (OOP)</h3>
+
+
+<p>This is a subject that I&rsquo;ve been wanting to learn, and struggling with for a long time (in PHP), and I&rsquo;m happy to say I finally get it. Thanks to Tealeaf and Ruby. The idea is with OOP is you create classes for a program and create objects from the classes. Classes are like blueprints for a house,and objects are like the houses made from the blueprints. There are some important key words in Ruby with OOP.</p>
+
+<ul>
+  <li>class - the blue print for objects</li>
+  <li>.new - keyword to create new objects</li>
+  <li>initialize - this is a special method that is run every time an object is created</li>
+  <li>attr_accessor - this creates getter and setter methods for instance variables</li>
+  <li>module - modules define behaviors that can be mixed into classes</li>
+  <li>include - the keyword for mixing modules into classes</li>
+</ul>
+
+
+<p>There&rsquo;s a lot more to it than that, but those are some of the basics in Ruby OOP Here is an example of a simple class and object</p>
+
+<p><code lang="ruby">
+class Dog{
+  attr_accessor :name</p>
+
+<p>  def intialize(n)
+    @name = n
+  end
+}</p>
+
+<p>fido = Dog.new(&ldquo;Fido&rdquo;)
+</code></p>
+
+<h3>This is where I was at after 2 weeks of Tealeaf Academy</h3>
+
+
+<p>I now have basic knowleghe of Ruby, OOP in Ruby, and I learned some valuable web developent skills such as command line and git. I completes a few projects as well.</p>
+
+<p><strong>Procedural Blackjack Game</strong> - <a href="https://github.com/doug7410/tealeaf_course_1/blob/master/blackjack.rb"><a href="https://github.com/doug7410/tealeaf_course_1/blob/master/blackjack.rb">https://github.com/doug7410/tealeaf_course_1/blob/master/blackjack.rb</a></a></p>
+
+<p><strong>Tic-Tac-Toe</strong> - <a href="https://github.com/doug7410/tealeaf_course_1/blob/master/tic_tac_toe.rb"><a href="https://github.com/doug7410/tealeaf_course_1/blob/master/tic_tac_toe.rb">https://github.com/doug7410/tealeaf_course_1/blob/master/tic_tac_toe.rb</a></a></p>
+
+<p><strong>Object Oriented Blackjack Game</strong> - <a href="https://github.com/doug7410/tealeaf_course_1/blob/master/OO_blackjack.rb"><a href="https://github.com/doug7410/tealeaf_course_1/blob/master/OO_blackjack.rb">https://github.com/doug7410/tealeaf_course_1/blob/master/OO_blackjack.rb</a></a></p>
+
+<p>I&rsquo;m pretty happy with myself. This post is getting pretty long winded, so I&rsquo;ll save week 3 for the next post. Thanks for reading!</p>
 ]]></content>
   </entry>
   
