@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tealeaf Academy | My Octopress Blog]]></title>
   <link href="http://doug7410.github.io/blog/categories/tealeaf-academy/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-01T15:05:38+00:00</updated>
+  <updated>2014-08-01T16:17:12+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,21 +18,17 @@
     <link href="http://doug7410.github.io/blog/2014/08/01/first-steps-with-ruby-and-web-development/"/>
     <updated>2014-08-01T14:14:11+00:00</updated>
     <id>http://doug7410.github.io/blog/2014/08/01/first-steps-with-ruby-and-web-development</id>
-    <content type="html"><![CDATA[<h3><a href="http://dsp-websolutions.com/portfolio/wp-content/uploads/2014/06/ruby-on-rails-tutorials-3.jpg"><img class="alignnone  wp-image-153" src="http://dsp-websolutions.com/portfolio/wp-content/uploads/2014/06/ruby-on-rails-tutorials-3-300x149.jpg" alt="ruby-on-rails-tutorials-3" width="332" height="165" /></a></h3>
-
-
-<h3>All I want to do is be a professional web developer, make some money, love what I do, and live happily ever after.</h3>
-
+    <content type="html"><![CDATA[<h3>All I want to do is be a professional web developer, make some money, love what I do, and live happily ever after.</h3>
 
 <p>Not to much to ask right? So where do I start? My journey actually began a while ago and I have some basic knowledge. I know HTML, CSS, some PHP and a little javascrpt. But that alone is not enough to get a job in today&rsquo;s market. Now adays, you need more that that. There are basically two types of web developers.</p>
 
 <ol>
-  <li>Front End</li>
-  <li>Back End</li>
+<li>Front End</li>
+<li>Back End</li>
 </ol>
 
 
-<p>The differences are ilustrated very well in this youtube video. <a href="http://www.youtube.com/watch?v=zXqs6X0lzKI" target="_blank"><a href="http://www.youtube.com/watch?v=zXqs6X0lzKI">http://www.youtube.com/watch?v=zXqs6X0lzKI</a></a></p>
+<p>The differences are ilustrated very well in this youtube video. [<a href="http://www.youtube.com/watch?v=zXqs6X0lzKI">http://www.youtube.com/watch?v=zXqs6X0lzKI</a>]</p>
 
 <p>A <strong>front end</strong> developer deals with what you see in your web browser. The HTML, CSS and Javascript. They do things like design and build sites and user interface.</p>
 
