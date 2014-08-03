@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sinatra | Doug S.]]></title>
+  <link href="http://doug7410.github.io/blog/categories/sinatra/atom.xml" rel="self"/>
+  <link href="http://doug7410.github.io/"/>
+  <updated>2014-08-03T21:50:35+00:00</updated>
+  <id>http://doug7410.github.io/</id>
+  <author>
+    <name><![CDATA[Doug Steinberg]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Putting It All Together. Web Development With Ruby, HTTP, Ajax , MVC With Sinatra]]></title>
+    <link href="http://doug7410.github.io/blog/2014/06/17/putting-it-all-together-HTTP-MVC-Ajax-and-Sinatra/"/>
+    <updated>2014-06-17T12:20:36+00:00</updated>
+    <id>http://doug7410.github.io/blog/2014/06/17/putting-it-all-together-HTTP-MVC-Ajax-and-Sinatra</id>
+    <content type="html"><![CDATA[<p><img class="<a" src="href="http://www.duskyswondersite.com/wp-content/uploads/2014/07/North-Queensferry-Fife-Scotland-by-David-Cation.jpg">http://www.duskyswondersite.com/wp-content/uploads/2014/07/North-Queensferry-Fife-Scotland-by-David-Cation.jpg</a>&#8221;></p>
+
+<p>I just finished up <a href="http://www.gotealeaf.com">Tealeaf Academy</a> course 1 of 3 . It&rsquo;s has been an outstanding learning experience! I feel like I&rsquo;ve come really far as a programmer, and I can take on small projects in Ruby on my own. When I say small projects I mean a simple program that doesn&rsquo;t require a database (databases are in course 2), like a game. I&rsquo;ve done blackjack and tic-tac-toe, so I guess the next game could be something like checkers or hangman. If you have any ideas feel free to leave them in the comments. Maybe we could collaborate on a game or other small project. It might be a fun side project.</p>
+
+<p>Anyway&hellip;.here&rsquo;s a recap of what I&rsquo;ve learned since my last post. Here is the <a href="http://infinite-waters-7065.herokuapp.com">Blackjack Game</a> I made while learning all of these things. <!--more--></p>
+
+<h2>HTTP</h2>
+
+<p>The heart of web development is HTTP. It&rsquo;s a stateless protocol for communicating between distributed systems.  In the case of web development it&rsquo;s usually a server and a client (browser). <a href="http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177">This article</a> goes into detail about HTTP.</p>
+
+<h2>Sinatra</h2>
+
+<p>Sinatra is a lightweight MCV framework for ruby. Below is a diagram of the MVC arcitecture.</p>
+
+<p><img src="/images/sinatra.jpg"></p>
+
+<p>In Sinatra , HTTP request are handled via routs. Routs are stored in controller, then depending on what the rout does, either a template is rendered or the request is redirected to another rout. You can read the Sinatra documentation <a href="http://www.sinatrarb.com/intro.html">here</a>.</p>
+
+<h2>Helper methods in Sinatra</h2>
+
+<p>Sinatra gives you the ability to create helper methods. These can be used in the controller and view templates. These are really handy for cleaning up your code and re-factoring.</p>
+
+<h2>AJAX</h2>
+
+<p>Ajax uses javascript to reload a section of a page without having to reload everything on the page. Below is an example of a simple ajax function with jQuery.</p>
+
+<pre><code class="javascript A simple AjAX call with jQuery">function player_hits(){
+$(document).on("click", "form#hit_form input", function(){ 
+
+$.ajax({
+type: "POST",
+url: "/game/player/hit"
+}).done(function(msg){
+$("#game").replaceWith(msg);
+});
+return false;
+});
+}
+</code></pre>
+
+<p>Course one has been challenging and I spent a LOT of time on it. I built 3 versions of  the Blackjack game.</p>
+
+<ol>
+<li> <a href="https://github.com/doug7410/tealeaf_course_1/blob/master/blackjack.rb">command line - procedural</a></li>
+<li> <a href="https://github.com/doug7410/tealeaf_course_1/blob/master/OO_blackjack.rb">command line - Object Oriented</a></li>
+<li> <a href="http://infinite-waters-7065.herokuapp.com">web based procedural with Sinatra</a></li>
+</ol>
+
+
+<p>I feel like I&rsquo;ve come a long way, but I know it&rsquo;s just the beginning. My next post with be about Ruby on Rails!</p>
+]]></content>
+  </entry>
+  
+</feed>

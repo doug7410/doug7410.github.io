@@ -3,22 +3,40 @@
   
   
   <url>
-    <loc>http://doug7410.github.io/blog/2014/08/01/first-steps-with-ruby-and-web-development/</loc>
-    <lastmod>2014-08-01T14:14:11+00:00</lastmod>
+    <loc>http://doug7410.github.io/blog/2014/07/16/rapid-prototyping-with-ruby-on-rails-course-done/</loc>
+    <lastmod>2014-07-16T16:10:36+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://doug7410.github.io/blog/2014/06/25/say-hello-to-rails-and-all-the-magic/</loc>
+    <lastmod>2014-06-25T12:20:36+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://doug7410.github.io/blog/2014/06/17/putting-it-all-together-HTTP-MVC-Ajax-and-Sinatra/</loc>
+    <lastmod>2014-06-17T12:20:36+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://doug7410.github.io/blog/2014/06/12/first-steps-with-ruby-and-tealeaf-academy/</loc>
+    <lastmod>2014-06-12T14:14:11+00:00</lastmod>
     <priority>0.8</priority>
   </url>
   
   
   <url>
     <loc>http://doug7410.github.io/</loc>
-    <lastmod>2014-08-01T16:18:51+00:00</lastmod>
+    <lastmod>2014-08-03T21:50:35+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://doug7410.github.io/blog/archives/</loc>
-    <lastmod>2014-08-01T16:18:51+00:00</lastmod>
+    <lastmod>2014-08-03T21:50:35+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

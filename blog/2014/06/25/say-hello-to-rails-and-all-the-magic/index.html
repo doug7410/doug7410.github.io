@@ -1,0 +1,439 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Say Hello to Rails and All of It's Magic! - Doug S.</title>
+  <meta name="author" content="Doug Steinberg">
+
+  
+  <meta name="description" content="I&rsquo;m through the first week of course 2 with Tealeaf Academy (Rapid prototyping with Ruby on Rails) It&rsquo;s been very demanding to say the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://doug7410.github.io/blog/2014/06/25/say-hello-to-rails-and-all-the-magic">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Doug S." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Doug S.</a></h1>
+  
+    <h2>web development with Ruby on Rails and more.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:doug7410.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Say Hello to Rails and All of It's Magic!</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-25T12:20:36+00:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img src="/images/roads-22.jpg"></p>
+
+<p>I&rsquo;m through the first week of course 2 with Tealeaf Academy (Rapid prototyping with Ruby on Rails) It&rsquo;s been very demanding to say the least, but still very fun and engaging.  There was a lot of information to absorb and I learned a lot.</p>
+
+<p>Before week 1 officially started, I was asked to read this <a href="http://guides.rubyonrails.org/getting_started.html">Getting Started with Rails guide</a>. I did actually get through it and build the example project, but by the end I wasn&rsquo;t very confident about Rails, which is ok, because that&rsquo;s what the course is for.</p>
+
+<!--more-->
+
+
+<p>The first lecture in the course cleared a lot of things up for me. Ruby on Rails (or RoR) is basically split up into 5 main parts and follows a MVC  (Model View Controller) pattern:</p>
+
+<h3>The five parts are:</h3>
+
+<ol>
+<li> The Router</li>
+<li> The Controller</li>
+<li> The Model</li>
+<li> The Database</li>
+<li> The View</li>
+</ol>
+
+
+<h2>Here is my quick explanation of  how rails works:</h2>
+
+<ol>
+<li> A HTTP request comes into the <strong>Router</strong></li>
+<li> the router directs that request to the <strong>Controller</strong></li>
+<li> depending on what is in the request, the **Controller will do 1 of 3 things
+
+<ul>
+<li>redirect to the router Router**</li>
+<li>render a <strong>View</strong> template
+
+<ul>
+<li>or reach into the <strong>Model</strong>. The <strong>Model</strong> can then retrieve data from the <strong>Database</strong> , send that back to the  <strong>Controller</strong>, and then render a <strong>View</strong></li>
+</ul>
+</li>
+<li><h4>Here is a nice diagram of rails:**</h4></li>
+</ul>
+</li>
+</ol>
+
+
+<p><img src="/images/request_response_mvc.jpg"></p>
+
+<h3>This part of the course focused mostly on the Model layer</h3>
+
+<p>Here is what a simple model looks like in Rails</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Every model in Rails corresponds to a table in the database. The above model would belong to a table named &lsquo;posts&rsquo;. Rails has several conventions for naming models, classes, tables, and lots of other things. This is what allows the &ldquo;Rails Magic&rdquo; to happen. For a model three naming conventions must be followed.</p>
+
+<ol>
+<li> the name of the model file must be singular, lowercase, and snake case. So the Post model would be in a file called &lsquo;post.rb&rsquo;. A &lsquo;PostCategory&rsquo; model would be in &lsquo;post_category.rb&rsquo;</li>
+<li> the name of the model class should be singular and CamelCase. ex: &lsquo;Post&rsquo;, or &lsquo;PostCategory&rsquo;</li>
+<li> the name of the table must be  plaural form, and snake case. ex: &lsquo;posts, or &#8216;post_categories&rsquo;</li>
+</ol>
+
+
+<p>Figuring out the name Rails expects can sometimes be tricky, so there is a built in method you can use in rails console to figure those tricky ones out. Check out the code below in rails console.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="s2">&quot;Goose&quot;</span><span class="o">.</span><span class="n">tableize</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;gooses&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The model name here is Goose. Calling the <code>tableize</code> method on the string &ldquo;Goose&rdquo; tells you rails expects the table to be called &lsquo;gooses&rsquo;. The model file for this would be goose.rb .</p>
+
+<p>To create tables in Rails there is a great built in feature called <strong><em>migrations</em></strong>. To create a migration you first run this command in termianl in your project directory</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">rails</span> <span class="n">generate</span> <span class="n">migration</span> <span class="n">create_gooses</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this example gooses is the table name. If you wanted to make a posts table you would just replace gooses with posts.  This will create a file in the <code>db/migrate</code> directory that looks like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">CreateGooses</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>    <span class="n">create_table</span> <span class="ss">:gooses</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now lets give gooses a name, height, and timestamps columns.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">CreateGooses</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>    <span class="n">create_table</span> <span class="ss">:gooses</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+</span><span class='line'>      <span class="n">t</span><span class="o">.</span><span class="n">integer</span> <span class="ss">:height</span>
+</span><span class='line'>      <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li> t.string :name (creates a column called name with a type of string)</li>
+<li> t.integer :height (creates a column called height with a type of integer)</li>
+<li> t.timestamps creates two column (created_at and updated_at) Rails automatially fills these in when records are created or updated. Pretty neat right!</li>
+</ol>
+
+
+<p>After you finish creating your migration file you run this command in your terminal</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">rake</span> <span class="ss">db</span><span class="p">:</span><span class="n">migrate</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you have bundler installed you might need to run</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="ss">db</span><span class="p">:</span><span class="n">migrate</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will create the table in your database, and you never have to write a single line of SQL, now that&rsquo;s awesome!</p>
+
+<h4>gooses table</h4>
+
+<table class="table">
+  <tr>
+    <th>id</th>
+    <th>name</th>  
+    <th>height</th>
+    <th>created_at</th>
+    <th>updated_at</th>
+  </tr>  
+  <tr>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </tr>
+</table>
+
+
+<p>As you can see above, the rails automaically added <em>id</em> , <em>created_at</em>, and <em>updated_at</em> columns.</p>
+
+<p><p>Now that we have a table set up all we have to go is create a model to go with it. Remember, the model is there to get data out of that table. Here is what the <em>Goose</em> model will look like .</p>
+
+<p><figure class='code'><figcaption><span>Goose Model</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Goose</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>I know there&rsquo;s not much to that, but it&rsquo;s all you&rsquo;ll need to interact with the gooses table. There are 2 things to remember when creating this model.</p>
+
+<ul>
+<li>the file name must be singular and in snake_case</li>
+<li>the class name must be singular and in CamelCase</li>
+</ul>
+
+
+<p>This model will give the entire application access to several getter and setter as well as other methods for objects created from the Goose class. And several methods that can be used on the Goose class. Some examples are:</p>
+
+<ol>
+<li> goose.name</li>
+<li> goose.name =</li>
+<li> Goose.first</li>
+<li> Goose.find(2)</li>
+<li> Goose.new(name: &lsquo;fred&rsquo;, height: &lsquo;10&rsquo;)</li>
+</ol>
+
+
+<p>In this post I talked a little about the MVC pattern in rails, the flow of Rails, creating tables with migrations, and models. In the next post I&rsquo;ll talk about model associations.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Doug Steinberg</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-25T12:20:36+00:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mvc/'>mvc</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/tealeaf-academy/'>tealeaf academy</a>, <a class='category' href='/blog/categories/web-development-career/'>web development career</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://doug7410.github.io/blog/2014/06/25/say-hello-to-rails-and-all-the-magic/" data-via="" data-counturl="http://doug7410.github.io/blog/2014/06/25/say-hello-to-rails-and-all-the-magic/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/06/17/putting-it-all-together-HTTP-MVC-Ajax-and-Sinatra/" title="Previous Post: Putting it all together. Web development with Ruby, HTTP, Ajax , MVC with Sinatra">&laquo; Putting it all together. Web development with Ruby, HTTP, Ajax , MVC with Sinatra</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/07/16/rapid-prototyping-with-ruby-on-rails-course-done/" title="Next Post: Tealeaf - Rapid prototyping with Ruby on Rails cousre done!">Tealeaf - Rapid prototyping with Ruby on Rails cousre done! &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/16/rapid-prototyping-with-ruby-on-rails-course-done/">Tealeaf - Rapid Prototyping With Ruby on Rails Cousre Done!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/25/say-hello-to-rails-and-all-the-magic/">Say Hello to Rails and All of It's Magic!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/17/putting-it-all-together-HTTP-MVC-Ajax-and-Sinatra/">Putting It All Together. Web Development With Ruby, HTTP, Ajax , MVC With Sinatra</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/first-steps-with-ruby-and-tealeaf-academy/">First Steps With Ruby and Web Development</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/doug7410">@doug7410</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'doug7410',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Doug Steinberg -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
