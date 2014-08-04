@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Web Development | Doug S.]]></title>
+  <title><![CDATA[Category: Web Development | Doug's Web Development Blog]]></title>
   <link href="http://doug7410.github.io/blog/categories/web-development/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-04T20:47:11+00:00</updated>
+  <updated>2014-08-04T21:34:32+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Doug Steinberg]]></name>
@@ -22,7 +22,7 @@
 
 <p>So I&rsquo;m done with week 2 of the Tealeaf Ruby on Rails course and I&rsquo;ve learned to do basic CRUD ( create, read, update, delete) actions using Rail&rsquo;s resourses , models, form helpers, and views.</p>
 
-<p>I thought this would be a good time start on a side project I had saved in my back pocket. This would be a good chance to practice what I&rsquo;ve learned as well as start my own project. The idea is pretty simple, it&rsquo;s called &ldquo;Punch Clock&rdquo;, for now at least. It allows you to create different jobs or tasks, and then track the time you spent working on them. Here  the Github repository</p>
+<p>I thought this would be a good time start on a side project I had saved in my back pocket. This would be a good chance to practice what I&rsquo;ve learned as well as start my own project. The idea is pretty simple, it&rsquo;s called &ldquo;Punch Clock&rdquo;, for now at least. It allows you to create different jobs or tasks, and then track the time you spent working on them. Here  the Github repository <!--more--></p>
 
 <p><a href="https://github.com/doug7410/punch-clock">https://github.com/doug7410/punch-clock</a></p>
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Rails | Doug S.]]></title>
+  <title><![CDATA[Category: Rails | Doug's Web Development Blog]]></title>
   <link href="http://doug7410.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-04T20:47:11+00:00</updated>
+  <updated>2014-08-04T21:34:32+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Doug Steinberg]]></name>
@@ -278,7 +278,7 @@ images_html += '&lt;/ul&gt;'
 
 <p>I hope that made some sense and now you have some idea of how I did it. I took a combination of JavaScript, jQuery, AJAX, a scrapper gem, and standard rails MVC. I&rsquo;m sure there are things that can be improved on and tweaked to please feel free to leave feedback.</p>
 
-<p>Thanks for reading and please send me any feedback to <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#x64;&#x73;&#116;&#101;&#105;&#x6e;&#x2d;&#x70;&#x68;&#105;&#110;&#115;&#x40;&#104;&#111;&#x74;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;&#46;">&#100;&#115;&#x74;&#x65;&#x69;&#x6e;&#45;&#112;&#x68;&#105;&#x6e;&#115;&#x40;&#104;&#x6f;&#x74;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;&#x2e;</a></p>
+<p>Thanks for reading and please send me any feedback to <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x64;&#x73;&#116;&#101;&#x69;&#110;&#x2d;&#x70;&#x68;&#x69;&#x6e;&#x73;&#x40;&#104;&#111;&#116;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;&#46;">&#100;&#x73;&#x74;&#x65;&#105;&#x6e;&#45;&#112;&#x68;&#105;&#x6e;&#115;&#64;&#104;&#x6f;&#x74;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#x6d;&#x2e;</a></p>
 ]]></content>
   </entry>
   
@@ -291,7 +291,7 @@ images_html += '&lt;/ul&gt;'
 
 <p>So I&rsquo;m done with week 2 of the Tealeaf Ruby on Rails course and I&rsquo;ve learned to do basic CRUD ( create, read, update, delete) actions using Rail&rsquo;s resourses , models, form helpers, and views.</p>
 
-<p>I thought this would be a good time start on a side project I had saved in my back pocket. This would be a good chance to practice what I&rsquo;ve learned as well as start my own project. The idea is pretty simple, it&rsquo;s called &ldquo;Punch Clock&rdquo;, for now at least. It allows you to create different jobs or tasks, and then track the time you spent working on them. Here  the Github repository</p>
+<p>I thought this would be a good time start on a side project I had saved in my back pocket. This would be a good chance to practice what I&rsquo;ve learned as well as start my own project. The idea is pretty simple, it&rsquo;s called &ldquo;Punch Clock&rdquo;, for now at least. It allows you to create different jobs or tasks, and then track the time you spent working on them. Here  the Github repository <!--more--></p>
 
 <p><a href="https://github.com/doug7410/punch-clock">https://github.com/doug7410/punch-clock</a></p>
 

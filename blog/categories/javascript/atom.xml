@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Javascript | Doug S.]]></title>
+  <title><![CDATA[Category: Javascript | Doug's Web Development Blog]]></title>
   <link href="http://doug7410.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-04T20:47:11+00:00</updated>
+  <updated>2014-08-04T21:34:32+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Doug Steinberg]]></name>
@@ -278,7 +278,7 @@ images_html += '&lt;/ul&gt;'
 
 <p>I hope that made some sense and now you have some idea of how I did it. I took a combination of JavaScript, jQuery, AJAX, a scrapper gem, and standard rails MVC. I&rsquo;m sure there are things that can be improved on and tweaked to please feel free to leave feedback.</p>
 
-<p>Thanks for reading and please send me any feedback to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#100;&#x73;&#116;&#x65;&#105;&#110;&#45;&#112;&#x68;&#x69;&#110;&#115;&#x40;&#104;&#111;&#116;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;&#46;">&#100;&#115;&#116;&#101;&#105;&#x6e;&#45;&#x70;&#x68;&#105;&#110;&#x73;&#64;&#104;&#111;&#x74;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;&#46;</a></p>
+<p>Thanks for reading and please send me any feedback to <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#100;&#115;&#x74;&#x65;&#x69;&#x6e;&#x2d;&#x70;&#104;&#105;&#x6e;&#115;&#x40;&#104;&#x6f;&#x74;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;&#46;">&#x64;&#115;&#x74;&#101;&#x69;&#x6e;&#x2d;&#x70;&#104;&#105;&#x6e;&#x73;&#x40;&#104;&#x6f;&#x74;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#109;&#x2e;</a></p>
 ]]></content>
   </entry>
   

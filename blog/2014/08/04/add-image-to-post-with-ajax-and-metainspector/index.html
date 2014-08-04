@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>How I Added Images to My Postit App With AJAX and MetaInspector - Doug S.</title>
+  <title>How I Added Images to My Postit App With AJAX and MetaInspector - Doug's Web Development Blog</title>
   <meta name="author" content="Doug Steinberg">
 
   
@@ -21,7 +21,7 @@
   <link rel="canonical" href="http://doug7410.github.io/blog/2014/08/04/add-image-to-post-with-ajax-and-metainspector">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Doug S." type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Doug's Web Development Blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -31,12 +31,24 @@
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-41855574-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Doug S.</a></h1>
+  <h1><a href="/">Doug's Web Development Blog</a></h1>
   
     <h2>web development with Ruby on Rails and more.</h2>
   
@@ -86,6 +98,9 @@
 
 
 <time datetime="2014-08-04T15:07:35+00:00" pubdate data-updated="true">Aug 4<sup>th</sup>, 2014</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://doug7410.github.io">Comments</a>
         
       </p>
     
@@ -457,7 +472,7 @@
 
 <p>I hope that made some sense and now you have some idea of how I did it. I took a combination of JavaScript, jQuery, AJAX, a scrapper gem, and standard rails MVC. I&rsquo;m sure there are things that can be improved on and tweaked to please feel free to leave feedback.</p>
 
-<p>Thanks for reading and please send me any feedback to <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#100;&#115;&#116;&#101;&#105;&#110;&#45;&#x70;&#104;&#105;&#x6e;&#x73;&#x40;&#x68;&#x6f;&#116;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;&#46;">&#x64;&#115;&#116;&#101;&#x69;&#110;&#x2d;&#x70;&#104;&#x69;&#x6e;&#115;&#x40;&#104;&#111;&#x74;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;&#x2e;</a></p>
+<p>Thanks for reading and please send me any feedback to <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#100;&#x73;&#116;&#x65;&#x69;&#x6e;&#x2d;&#112;&#104;&#x69;&#x6e;&#115;&#x40;&#104;&#x6f;&#x74;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;&#46;">&#100;&#x73;&#x74;&#x65;&#x69;&#x6e;&#45;&#112;&#x68;&#x69;&#x6e;&#115;&#x40;&#104;&#111;&#116;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;&#46;</a></p>
 </div>
 
 
@@ -494,8 +509,10 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://doug7410.github.io/blog/2014/08/04/add-image-to-post-with-ajax-and-metainspector/" data-via="" data-counturl="http://doug7410.github.io/blog/2014/08/04/add-image-to-post-with-ajax-and-metainspector/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://doug7410.github.io/blog/2014/08/04/add-image-to-post-with-ajax-and-metainspector/" data-via="doug7410" data-counturl="http://doug7410.github.io/blog/2014/08/04/add-image-to-post-with-ajax-and-metainspector/" >Tweet</a>
   
+  
+  <div class="g-plusone" data-size="medium"></div>
   
   
 </div>
@@ -509,6 +526,12 @@
     </p>
   </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -588,9 +611,33 @@
 </footer>
   
 
+<script type="text/javascript">
+      var disqus_shortname = 'ds-web-dev-blog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://doug7410.github.io/blog/2014/08/04/add-image-to-post-with-ajax-and-metainspector/';
+        var disqus_url = 'http://doug7410.github.io/blog/2014/08/04/add-image-to-post-with-ajax-and-metainspector/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 
 
 
