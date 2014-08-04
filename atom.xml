@@ -4,7 +4,7 @@
   <title><![CDATA[Doug S.]]></title>
   <link href="http://doug7410.github.io/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-04T13:30:40+00:00</updated>
+  <updated>2014-08-04T13:55:26+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Doug Steinberg]]></name>
@@ -730,6 +730,226 @@ Here is my code on GitHub - <a href="https://github.com/doug7410/postit-app">htt
 
 
 <p>I&rsquo;m pretty happy with myself. This post is getting pretty long winded, so I&rsquo;ll cut it off here. Thanks for reading!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Database Transaction With mySQL and PHP]]></title>
+    <link href="http://doug7410.github.io/blog/2014/05/06/mysql-transactions-with-php/"/>
+    <updated>2014-05-06T22:45:21+00:00</updated>
+    <id>http://doug7410.github.io/blog/2014/05/06/mysql-transactions-with-php</id>
+    <content type="html"><![CDATA[<p><img src="http://doug7410.github.io/images/Code-Works.png"></p>
+
+<p>I fellow student from <a href="http://www.oreillyschool.com">O&#8217;Reilly School Of Technology</a> asked me about using transactions in SQL to batch together multiple table updates. It turns out this is pretty easy. If you&rsquo;re reading this you probably know why this is a good idea, but I&rsquo;ll briefly explain why just in case you&rsquo;re not sure.</p>
+
+<p>The most important thing when dealing with relational databases is to keep all the data, in all the tables consistent with your database rules. For example, if you have two tables where one depends on data from the other you wouldn&rsquo;t want to insert data into one if there was a problem with inserting data into the other. Below are two very simple tables.<!--more--></p>
+
+<h3>widget_customers</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>customerID</th>
+            <th>first_name</th>
+            <th>last_name</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>John</td>
+            <td>Smith</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Walter</td>
+            <td>White</td>
+        </tr>
+    
+</table>
+
+
+<h3>widget_orders</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>orderID</th>
+            <th>widgetID</th>
+            <th>customerID</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+    
+</table>
+
+
+<p>Lets assume we need to make a script that adds to both of these tables at the same time. Now let&rsquo;s assume something goes wrong while inserting data into the first one, but not the second one.  We could end up with something like what you see below:</p>
+
+<h3>widget_customers</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>customerID</th>
+            <th>first_name</th>
+            <th>last_name</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>John</td>
+            <td>Smith</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Walter</td>
+            <td>White</td>
+        </tr>
+    
+</table>
+
+
+<h3>widget_orders</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>orderID</th>
+            <th>widgetID</th>
+            <th>customerID</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+        <td>2</td>
+        <td>1</td>
+        <td>2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+
+<p>So here we attempted to inserted a new <strong>widget_customer</strong> and a new <strong>widget_order</strong>,but for some reason the customer insert query failed! That&rsquo;s why we have a new orderID (3) with a missing customerID. To make sure this never happens mySQL has transactions.</p>
+
+<p>With transactions you can check that everything went right with both inserts before you <strong>COMMIT</strong> them to the database.</p>
+
+<p>Before you can even use transaction, you need to set your database tables  to use a MySQL engine that supports <b>transactions</b>.</p>
+
+<p>You can do this in your mysql command line like this</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql&gt; alter table widget_customers type=InnoDB;
+</span><span class='line'>mysql&gt; alter table widget_orders type=InnoDB;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you&rsquo;re ready to take advantage of transactions.</p>
+
+<p>First you set a flag to true and begin the transaction. You use this to check that each SQL command is successful</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='PHP'><span class='line'><span class="nv">$success</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>  <span class="c1">//flag to determine success of transaction</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//start transaction</span>
+</span><span class='line'><span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;SET AUTOCOMMIT=0&quot;</span><span class="p">;</span>     <span class="c1">// this turn off AUTOCOMMIT </span>
+</span><span class='line'><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span> <span class="c1">// in mySQL and lets you insert data without it being perminate </span>
+</span><span class='line'><span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;BEGIN&quot;</span><span class="p">;</span> <span class="c1">// this begins the transaction</span>
+</span><span class='line'><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then you run your first query</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='PHP'><span class='line'><span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;INSERT into widget_customers (customerID, first_name, last_name) VALUES (&#39;&#39;,&#39;Jessie&#39;,&#39;James&#39;)&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nv">$result</span><span class="p">){</span>
+</span><span class='line'>   <span class="nv">$success</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then your second query</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='PHP'><span class='line'><span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;INSERT into widget_orders (orderID, widgetID, customerID)</span>
+</span><span class='line'><span class="s2">VALUES (&#39;&#39;, &#39;1&#39;, &#39;3&#39;)&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nv">$result</span><span class="p">){</span>
+</span><span class='line'>   <span class="nv">$success</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now if either of those queries didn&rsquo;t work, <code>$success</code> will be <strong>false</strong>.</p>
+
+<p>In the last step we either commit our queries to the database or roll them back.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='PHP'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nv">$success</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;COMMIT&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">echo</span> <span class="s2">&quot;A new customer and order has been entered!&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;ROLLBACK&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">echo</span> <span class="s2">&quot;Sorry, the update failed.&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;SET AUTOCOMMIT=1&quot;</span><span class="p">;</span>  <span class="c1">//return to autocommit</span>
+</span><span class='line'><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So what&rsquo;s happening here?</p>
+
+<p>First we check our <code>$success flag</code>. If <code>$success</code> is <strong>true</strong> we run the mySQL command <code>COMMIT</code>. At this point all the data we inserted will be perminate. In other words, you wount be able to undo the changes. (you can delete the data you don&rsquo;t want, but that&rsquo;s not the point) .</p>
+
+<p>If any of our queries failed <code>$success</code> will equal <strong>false</strong>. We&rsquo;ll then run the <code>ROLLBACK</code> command and all the tables will go back to how they were before the transaction started.</p>
+
+<p>The last command <code>SET AUTOCOMMIT=1</code> just sets the database back to how it was before the transaction started (with transactions disabled).</p>
+
+<p>So I hope all of that made sense, please let me know if you have any questions or comments. Thanks!</p>
 ]]></content>
   </entry>
   

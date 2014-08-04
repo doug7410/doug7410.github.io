@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Transaction | Doug S.]]></title>
+  <link href="http://doug7410.github.io/blog/categories/transaction/atom.xml" rel="self"/>
+  <link href="http://doug7410.github.io/"/>
+  <updated>2014-08-04T13:55:26+00:00</updated>
+  <id>http://doug7410.github.io/</id>
+  <author>
+    <name><![CDATA[Doug Steinberg]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Database Transaction With mySQL and PHP]]></title>
+    <link href="http://doug7410.github.io/blog/2014/05/06/mysql-transactions-with-php/"/>
+    <updated>2014-05-06T22:45:21+00:00</updated>
+    <id>http://doug7410.github.io/blog/2014/05/06/mysql-transactions-with-php</id>
+    <content type="html"><![CDATA[<p><img src="/images/Code-Works.png"></p>
+
+<p>I fellow student from <a href="http://www.oreillyschool.com">O&#8217;Reilly School Of Technology</a> asked me about using transactions in SQL to batch together multiple table updates. It turns out this is pretty easy. If you&rsquo;re reading this you probably know why this is a good idea, but I&rsquo;ll briefly explain why just in case you&rsquo;re not sure.</p>
+
+<p>The most important thing when dealing with relational databases is to keep all the data, in all the tables consistent with your database rules. For example, if you have two tables where one depends on data from the other you wouldn&rsquo;t want to insert data into one if there was a problem with inserting data into the other. Below are two very simple tables.<!--more--></p>
+
+<h3>widget_customers</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>customerID</th>
+            <th>first_name</th>
+            <th>last_name</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>John</td>
+            <td>Smith</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Walter</td>
+            <td>White</td>
+        </tr>
+    
+</table>
+
+
+<h3>widget_orders</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>orderID</th>
+            <th>widgetID</th>
+            <th>customerID</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+    
+</table>
+
+
+<p>Lets assume we need to make a script that adds to both of these tables at the same time. Now let&rsquo;s assume something goes wrong while inserting data into the first one, but not the second one.  We could end up with something like what you see below:</p>
+
+<h3>widget_customers</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>customerID</th>
+            <th>first_name</th>
+            <th>last_name</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>John</td>
+            <td>Smith</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Walter</td>
+            <td>White</td>
+        </tr>
+    
+</table>
+
+
+<h3>widget_orders</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>orderID</th>
+            <th>widgetID</th>
+            <th>customerID</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+        <td>2</td>
+        <td>1</td>
+        <td>2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+
+<p>So here we attempted to inserted a new <strong>widget_customer</strong> and a new <strong>widget_order</strong>,but for some reason the customer insert query failed! That&rsquo;s why we have a new orderID (3) with a missing customerID. To make sure this never happens mySQL has transactions.</p>
+
+<p>With transactions you can check that everything went right with both inserts before you <strong>COMMIT</strong> them to the database.</p>
+
+<p>Before you can even use transaction, you need to set your database tables  to use a MySQL engine that supports <b>transactions</b>.</p>
+
+<p>You can do this in your mysql command line like this</p>
+
+<pre><code>mysql&gt; alter table widget_customers type=InnoDB;
+mysql&gt; alter table widget_orders type=InnoDB;
+</code></pre>
+
+<p>Now you&rsquo;re ready to take advantage of transactions.</p>
+
+<p>First you set a flag to true and begin the transaction. You use this to check that each SQL command is successful</p>
+
+<pre><code class="PHP">$success = true;  //flag to determine success of transaction
+
+//start transaction
+$command = "SET AUTOCOMMIT=0";     // this turn off AUTOCOMMIT 
+$result = $db-&gt;query($command); // in mySQL and lets you insert data without it being perminate 
+$command = "BEGIN"; // this begins the transaction
+$result = $db-&gt;query($command);
+</code></pre>
+
+<p>Then you run your first query</p>
+
+<pre><code class="PHP">$command = "INSERT into widget_customers (customerID, first_name, last_name) VALUES ('','Jessie','James')";
+$result = $db-&gt;query($command);
+if(!$result){
+   $success = false;
+}
+</code></pre>
+
+<p>Then your second query</p>
+
+<pre><code class="PHP">$command = "INSERT into widget_orders (orderID, widgetID, customerID)
+VALUES ('', '1', '3')";
+$result = $db-&gt;query($command);
+if(!$result){
+   $success = false;
+}
+</code></pre>
+
+<p>Now if either of those queries didn&rsquo;t work, <code>$success</code> will be <strong>false</strong>.</p>
+
+<p>In the last step we either commit our queries to the database or roll them back.</p>
+
+<pre><code class="PHP">if ($success) {
+    $command = "COMMIT";
+    $result = $db-&gt;query($command);
+    echo "A new customer and order has been entered!";
+}else {
+    $command = "ROLLBACK";
+    $result = $db-&gt;query($command);
+    echo "Sorry, the update failed.";
+}
+
+$command = "SET AUTOCOMMIT=1";  //return to autocommit
+$result = $db-&gt;query($command);
+</code></pre>
+
+<p>So what&rsquo;s happening here?</p>
+
+<p>First we check our <code>$success flag</code>. If <code>$success</code> is <strong>true</strong> we run the mySQL command <code>COMMIT</code>. At this point all the data we inserted will be perminate. In other words, you wount be able to undo the changes. (you can delete the data you don&rsquo;t want, but that&rsquo;s not the point) .</p>
+
+<p>If any of our queries failed <code>$success</code> will equal <strong>false</strong>. We&rsquo;ll then run the <code>ROLLBACK</code> command and all the tables will go back to how they were before the transaction started.</p>
+
+<p>The last command <code>SET AUTOCOMMIT=1</code> just sets the database back to how it was before the transaction started (with transactions disabled).</p>
+
+<p>So I hope all of that made sense, please let me know if you have any questions or comments. Thanks!</p>
+]]></content>
+  </entry>
+  
+</feed>

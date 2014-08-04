@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Database Transaction With mySQL and PHP - Doug S.</title>
+  <meta name="author" content="Doug Steinberg">
+
+  
+  <meta name="description" content="I fellow student from O&#8217;Reilly School Of Technology asked me about using transactions in SQL to batch together multiple table updates. It &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://doug7410.github.io/blog/2014/05/06/mysql-transactions-with-php">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Doug S." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Doug S.</a></h1>
+  
+    <h2>web development with Ruby on Rails and more.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:doug7410.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Database Transaction With mySQL and PHP</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-06T22:45:21+00:00" pubdate data-updated="true">May 6<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img src="/images/Code-Works.png"></p>
+
+<p>I fellow student from <a href="http://www.oreillyschool.com">O&#8217;Reilly School Of Technology</a> asked me about using transactions in SQL to batch together multiple table updates. It turns out this is pretty easy. If you&rsquo;re reading this you probably know why this is a good idea, but I&rsquo;ll briefly explain why just in case you&rsquo;re not sure.</p>
+
+<p>The most important thing when dealing with relational databases is to keep all the data, in all the tables consistent with your database rules. For example, if you have two tables where one depends on data from the other you wouldn&rsquo;t want to insert data into one if there was a problem with inserting data into the other. Below are two very simple tables.<!--more--></p>
+
+<h3>widget_customers</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>customerID</th>
+            <th>first_name</th>
+            <th>last_name</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>John</td>
+            <td>Smith</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Walter</td>
+            <td>White</td>
+        </tr>
+    
+</table>
+
+
+<h3>widget_orders</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>orderID</th>
+            <th>widgetID</th>
+            <th>customerID</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+    
+</table>
+
+
+<p>Lets assume we need to make a script that adds to both of these tables at the same time. Now let&rsquo;s assume something goes wrong while inserting data into the first one, but not the second one.  We could end up with something like what you see below:</p>
+
+<h3>widget_customers</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>customerID</th>
+            <th>first_name</th>
+            <th>last_name</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>John</td>
+            <td>Smith</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Walter</td>
+            <td>White</td>
+        </tr>
+    
+</table>
+
+
+<h3>widget_orders</h3>
+
+<table class="table">
+    
+        <tr>
+            <th>orderID</th>
+            <th>widgetID</th>
+            <th>customerID</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+        <td>2</td>
+        <td>1</td>
+        <td>2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+
+<p>So here we attempted to inserted a new <strong>widget_customer</strong> and a new <strong>widget_order</strong>,but for some reason the customer insert query failed! That&rsquo;s why we have a new orderID (3) with a missing customerID. To make sure this never happens mySQL has transactions.</p>
+
+<p>With transactions you can check that everything went right with both inserts before you <strong>COMMIT</strong> them to the database.</p>
+
+<p>Before you can even use transaction, you need to set your database tables  to use a MySQL engine that supports <b>transactions</b>.</p>
+
+<p>You can do this in your mysql command line like this</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql&gt; alter table widget_customers type=InnoDB;
+</span><span class='line'>mysql&gt; alter table widget_orders type=InnoDB;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you&rsquo;re ready to take advantage of transactions.</p>
+
+<p>First you set a flag to true and begin the transaction. You use this to check that each SQL command is successful</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='PHP'><span class='line'><span class="nv">$success</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>  <span class="c1">//flag to determine success of transaction</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//start transaction</span>
+</span><span class='line'><span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;SET AUTOCOMMIT=0&quot;</span><span class="p">;</span>     <span class="c1">// this turn off AUTOCOMMIT </span>
+</span><span class='line'><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span> <span class="c1">// in mySQL and lets you insert data without it being perminate </span>
+</span><span class='line'><span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;BEGIN&quot;</span><span class="p">;</span> <span class="c1">// this begins the transaction</span>
+</span><span class='line'><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then you run your first query</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='PHP'><span class='line'><span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;INSERT into widget_customers (customerID, first_name, last_name) VALUES (&#39;&#39;,&#39;Jessie&#39;,&#39;James&#39;)&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nv">$result</span><span class="p">){</span>
+</span><span class='line'>   <span class="nv">$success</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then your second query</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='PHP'><span class='line'><span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;INSERT into widget_orders (orderID, widgetID, customerID)</span>
+</span><span class='line'><span class="s2">VALUES (&#39;&#39;, &#39;1&#39;, &#39;3&#39;)&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nv">$result</span><span class="p">){</span>
+</span><span class='line'>   <span class="nv">$success</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now if either of those queries didn&rsquo;t work, <code>$success</code> will be <strong>false</strong>.</p>
+
+<p>In the last step we either commit our queries to the database or roll them back.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='PHP'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nv">$success</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;COMMIT&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">echo</span> <span class="s2">&quot;A new customer and order has been entered!&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;ROLLBACK&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">echo</span> <span class="s2">&quot;Sorry, the update failed.&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">$command</span> <span class="o">=</span> <span class="s2">&quot;SET AUTOCOMMIT=1&quot;</span><span class="p">;</span>  <span class="c1">//return to autocommit</span>
+</span><span class='line'><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$command</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So what&rsquo;s happening here?</p>
+
+<p>First we check our <code>$success flag</code>. If <code>$success</code> is <strong>true</strong> we run the mySQL command <code>COMMIT</code>. At this point all the data we inserted will be perminate. In other words, you wount be able to undo the changes. (you can delete the data you don&rsquo;t want, but that&rsquo;s not the point) .</p>
+
+<p>If any of our queries failed <code>$success</code> will equal <strong>false</strong>. We&rsquo;ll then run the <code>ROLLBACK</code> command and all the tables will go back to how they were before the transaction started.</p>
+
+<p>The last command <code>SET AUTOCOMMIT=1</code> just sets the database back to how it was before the transaction started (with transactions disabled).</p>
+
+<p>So I hope all of that made sense, please let me know if you have any questions or comments. Thanks!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Doug Steinberg</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-06T22:45:21+00:00" pubdate data-updated="true">May 6<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/database/'>database</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/transaction/'>transaction</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://doug7410.github.io/blog/2014/05/06/mysql-transactions-with-php/" data-via="" data-counturl="http://doug7410.github.io/blog/2014/05/06/mysql-transactions-with-php/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/06/12/first-steps-with-ruby-and-tealeaf-academy/" title="Next Post: First steps with Ruby and Web Development">First steps with Ruby and Web Development &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/16/rails-project-punch-clock-app/">Ruby on Rails Project - Punch Clock App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/16/rapid-prototyping-with-ruby-on-rails-course-done/">Tealeaf - Rapid Prototyping With Ruby on Rails Cousre Done!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/25/say-hello-to-rails-and-all-the-magic/">Say Hello to Rails and All of It's Magic!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/17/putting-it-all-together-HTTP-MVC-Ajax-and-Sinatra/">Putting It All Together. Web Development With Ruby, HTTP, Ajax , MVC With Sinatra</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/first-steps-with-ruby-and-tealeaf-academy/">First Steps With Ruby and Web Development</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/doug7410">@doug7410</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'doug7410',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Doug Steinberg -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
