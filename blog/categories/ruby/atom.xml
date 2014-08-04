@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Doug's Web Development Blog]]></title>
   <link href="http://doug7410.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-04T21:34:32+00:00</updated>
+  <updated>2014-08-04T22:18:41+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Doug Steinberg]]></name>
@@ -23,6 +23,8 @@
 <p><img src="/images/image_scrapper.jpg"></p>
 
 <p>Here is the link to the actual working app <a href="http://shielded-retreat-9536.herokuapp.com/">http://shielded-retreat-9536.herokuapp.com/</a> <!--more--></p>
+
+<p>Here is the code on GitHub <a href="https://github.com/doug7410/postit-app">https://github.com/doug7410/postit-app</a></p>
 
 <p>You&rsquo;ll have to register and create a post in order to try out the image feature.</p>
 
@@ -61,10 +63,11 @@ end
 <p>I&rsquo;m using a web scraper called <a href="https://github.com/jaimeiniesta/metainspector">metainspector</a> to fetch an array of images from the <code>url</code> given to the post. To access the images returned by metainspector I have to take following steps:</p>
 
 <ol>
-<li>create a link that sends an HTTP request to a <code>post_image</code> action in the <code>post_controller</code></li>
-<li>in that controller action is a method that uses the post <code>url</code></li>
+<li>create a link that sends an HTTP request to a <code>post_image</code> action in the post controller</li>
+<li>that action renders a javascript template</li>
+<li>that template uses a method which is accessed on the post objecy</li>
 <li>inside that method, <strong>metainspector</strong> uses the <code>url</code> to return an array of images that are on the url&rsquo;s web page</li>
-<li>a list of images is shown to choose an image to the post</li>
+<li>a list of images is shown and the user chooses an image for the post</li>
 </ol>
 
 
@@ -75,9 +78,9 @@ end
 <p>I&rsquo;m using AJAX and a very slick JavaScript interface in the UI to select the image. The workflow in the UI works like this:</p>
 
 <ol>
-<li> when creating or editing a post, enter a url in the URL form field</li>
-<li> click on the &ldquo;Choose Post Image&rdquo; button</li>
-<li> under the input and button a hidden div slides down with all the images generated from the URL</li>
+<li> when creating or editing a post, the user enters a url in the URL form field</li>
+<li> the user clicks on the &ldquo;Choose Post Image&rdquo; button</li>
+<li> underneath the URL field, a hidden div slides down with all the images generated from the URL</li>
 <li> the user clicks on an image to choose it and assign it to the post</li>
 </ol>
 
@@ -100,13 +103,13 @@ There are two things about this link use some special rails magic
 - `remote" true` 
 - `method: 'post'`
 
-`remote: true` turns this into an AJAX link. It's equivalent to writing a JavaScript event handler that process a an AJAX call when the link is clicked. 
+`remote: true` turns this into an AJAX link. It's equivalent to writing a JavaScript event handler that process an AJAX call when the link is clicked. 
 
 `method: 'post'` turns the link in to a POST request as opposed to a GET request. 
 
 Both of these are necessary for the next step, the controller action. 
 
-When the user add a URL to the field and then clicks the "Choose Post Image" button it uses this rout:
+When the user adds a URL to the field and then clicks the "Choose Post Image" button it uses this rout:
 </code></pre>
 
 <p>post &lsquo;/post_image&rsquo;, to: &lsquo;posts#post_image&rsquo;
@@ -129,14 +132,18 @@ When the user add a URL to the field and then clicks the "Choose Post Image" but
 end
 </code></pre>
 
-<p>Here there are 3 things happening.
-  - a new @post object is created. This is necessary because the post model has a method that fetches the images. So you need a post object to call that method
-  - a @url variable is created from the URL field in the form. If you look at the &ldquo;Choose Post Image&rdquo; link you probably notice there is no URL parameter anywhere. I used JavaScript to dynamically add the url as a parameter to the link.
-  - lastly, the action renders the default template <code>post_image.js.erb</code> . Since the request coming into the action is JavaScript formatted, the <code>respond_to</code> block send the request off to the <code>post_image.js.erb</code> template.</p>
+<p>Here there are 3 things happening.</p>
 
-<p> I should probably take a step back and show you the JavaScript that added the URL parameter to the link.</p>
+<ul>
+<li>a new @post object is created. This is necessary because the post model has a method that fetches the images. So you need a post object to call that method</li>
+<li>a @url variable is created from the URL field in the form. If you look at the &ldquo;Choose Post Image&rdquo; link you probably notice there is no URL parameter anywhere. I used JavaScript to dynamically add the url as a parameter to the link.</li>
+<li>lastly, the action renders the default template <code>post_image.js.erb</code> . Since the request coming into the action is JavaScript formatted, the <code>respond_to</code> block sends the request off to the <code>post_image.js.erb</code> template.</li>
+</ul>
 
-<pre><code class="Javascript">// this makes the "choose image button add the url parameter to the end of the link"
+
+<p><strong>I should probably take a step back and show you the JavaScript that added the URL parameter to the link.</strong></p>
+
+<pre><code class="Javascript /app/assets/javascripts/post_images.js">// this makes the "choose image button add the url parameter to the end of the link"
 
 $(document).ready(function(){
 
@@ -153,15 +160,19 @@ $(document).ready(function(){
 });
 </code></pre>
 
+<p><strong>NOTE:</strong> <em>to get the code above to work properly I had to add the jquery-turbolinks gem to my gemfile</em></p>
+
+<p><code>gem 'jquery-turbolinks'</code></p>
+
 <p>Basically what this does is append <code>?url=</code>  and whatever text is in the URL feild to the end of the link.</p>
 
 <p>The link by default points to the <code>/post_image</code> path. So if you type <code>www.cnn.com</code> into the URL field, the link will automatically be turned into <code>/post_image?www.cnn.com</code></p>
 
 <h3>5. inside the JavaScript template  <code>post_image.js.erb</code></h3>
 
-<p>After the response goes through the controller action it ends up in the JavaScript template. Theis is where all of the cool AJAX stuff happens. Here is what the template looks like.</p>
+<p>After the response goes through the controller action it ends up in the JavaScript template. This is where all of the cool AJAX stuff happens. Here is what the template looks like.</p>
 
-<pre><code class="Javascript">var images_html = '&lt;ul class="choose_img_thumbs"&gt;';
+<pre><code class="Javascript /app/views/posts/post_image.js.erb">var images_html = '&lt;ul class="choose_img_thumbs"&gt;';
 
 &lt;% if @post.url_images(@url) != "error"  %&gt;
   &lt;% @post.url_images(@url).each do |image| %
@@ -191,16 +202,17 @@ $("#image_choices").slideDown(function(){
 <p><strong>To give you an idea of my though process I&rsquo;ll try to explain what this file does.</strong></p>
 
 <ul>
-<li>It creates an unordered list of images and then places them into a div with the ID of <code>images_container</code> .</li>
-<li>Once the image list in inside the <code>images_container</code> , that div slides down. Keep in mind this is all happening on the create or edit post page.</li>
-<li>After the <code>images_container</code> slides down, the user clicks on an image to choose it and assign it to the post.</li>
-<li>once the chosen image has been clicked the <code>images_container</code> slides up and another hidden div <code>post_image</code> gets the chosen image inserted into it and slides down.</li>
+<li>It creates an unordered list of images and then places them into a div with the ID of <code>#images_container</code> .</li>
+<li>Once the image list is inside the <code>#images_container</code> , that div slides down. Keep in mind this is all happening on the create post or edit post page.</li>
+<li>After the <code>#images_container</code> slides down, the user clicks on an image to choose it and assign it to the post.</li>
+<li>once the chosen image has been clicked the <code>images_container</code> slides up and another hidden div, <code>#post_image</code> gets the chosen image inserted into it and slides down.</li>
+<li>there is also a hidden form field <code>#image_chocies</code>. The image URL is dynamically added to it&rsquo;s value attriubte.</li>
 </ul>
 
 
 <p>The important part of this code is <code>@post.url_images(@url)</code> . Here is the <code>url_images</code> method in the Post model</p>
 
-<pre><code class="ruby">def url_images(url)
+<pre><code class="ruby /app/models/post.rb">def url_images(url)
   ext = url.split('.').last
   if ['jpg','jpeg','png','gif','bmp'].include?(ext)
     [url]
@@ -215,16 +227,20 @@ $("#image_choices").slideDown(function(){
 end
 </code></pre>
 
-<p>There are basically 3 important things going on here
-  - the URL passes in is a link that goes directly to an image
-  - the URL is a web page with images on it
-  - there is a problem with the URL, in which case the string &ldquo;error&rdquo; is returned.</p>
+<p>There are basically 3 cases that can happen in this method</p>
+
+<ul>
+<li>the URL passed in is an image URL</li>
+<li>the URL is a web page with images on it</li>
+<li>or there is a problem with the URL, in which case the string &ldquo;error&rdquo; is returned.</li>
+</ul>
+
 
 <p>The first thing that happens is the URL is split apart on the dots (.) . If it&rsquo;s  an image URL like <code>www.mysite.com/myimage.jpg</code> the first condition in the if statement will execute and an array with the URL string will be returned.</p>
 
 <p>If that&rsquo;s not the case the URL will be passed into MetaInspector and assigned to the <code>page</code> variable. MetaInspector scrapes information from a given URL and gives you several methods for accessing that data. In this case I just want the images. <code>page.images</code> returns an array of all the images retrieved by MetaInspector</p>
 
-<p>If MetaInspector has a problem with the URL passed in it will throw an exception and the whole app will fail. To get around this I used a <code>begin and rescue block</code>. This way if there are any exception thrown by MetaInspector it will execute the rescue block and just return the string &ldquo;error&rdquo;.</p>
+<p>If MetaInspector has a problem with the URL passed in it will throw an exception and the whole app will fail. To get around this I used a <code>begin and rescue block</code>. This way if there are any exception thrown by MetaInspector the method will execute the rescue block and just return the string &ldquo;error&rdquo;.</p>
 
 <p>So that&rsquo;s the first thing going on the JavaScript template. The first line is</p>
 
@@ -241,14 +257,18 @@ end
 images_html += '&lt;/ul&gt;'
 </code></pre>
 
-<p>This creates the list of images inside an unordered list and assigns it to the <code>images_html</code> variable.</p>
+<p>This creates tan unordered list of images and assigns the list to the <code>images_html</code> variable.</p>
 
 <p>That list is put into the <code>#images_container</code> with this code</p>
 
 <pre><code class="Javascript">$("#images_container").html(images_html);
 </code></pre>
 
-<p>Then this part slides down the <code>#image_choices</code> and when an image is clicked 3 things happen</p>
+<p>Then this part
+<code>Javascript
+$("#image_choices").slideDown(function(){
+</code>
+slides down the <code>#image_choices</code> and when an image is clicked 3 things happen</p>
 
 <ul>
 <li>this line <code>$("#post_post_image").val($(this).attr('src'));</code> adds the URL of the clicked image to a hidden form input  <code>"#post_post_image"</code></li>
@@ -271,14 +291,56 @@ images_html += '&lt;/ul&gt;'
 
 <h3>6. finishing up the feature&rsquo;s workflow</h3>
 
-<p>At this pont all that is left is the post has to be saved and the image URL will be added it the <code>post_image</code> column. This is because there is a hidden form input.</p>
+<p>At this pont all that is left is the post has to be saved and the image URL will be added to the <code>post_image</code> column. This is because of the hidden form field I talked about. Here is the hidden field in the form.</p>
 
 <pre><code class="ruby">&lt;%=  f.hidden_field :post_image %&gt;
 </code></pre>
 
-<p>I hope that made some sense and now you have some idea of how I did it. I took a combination of JavaScript, jQuery, AJAX, a scrapper gem, and standard rails MVC. I&rsquo;m sure there are things that can be improved on and tweaked to please feel free to leave feedback.</p>
+<p>Also, just for clarification. Here is the entire post form.</p>
 
-<p>Thanks for reading and please send me any feedback to <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x64;&#115;&#116;&#101;&#x69;&#x6e;&#x2d;&#112;&#104;&#x69;&#x6e;&#115;&#x40;&#104;&#111;&#x74;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;&#46;">&#100;&#x73;&#x74;&#x65;&#105;&#110;&#45;&#112;&#x68;&#x69;&#x6e;&#115;&#64;&#104;&#111;&#x74;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;&#x2e;</a></p>
+<p>&#8220;`erb /app/views/posts/_form.html.erb</p>
+
+<div class="well">
+
+<%= render 'shared/errors', object: @post %>
+<%= my_form_for @post do |f| %>
+  <%=  f.hidden_field :post_image %>
+<div class="control-group">
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</div>
+<div class="control-group">
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+  <%= link_to 'Choose Post Image', post_image_path, remote: true, method: 'post', class: 'btn btn-primary', id: 'choose_img_btn' %>
+</div>
+<div id="image_choices" >
+  <h4>Choose an image to go with this post.</h4>
+  <div id="images_container"></div>
+</div>
+<div id="post_image">
+  <%= image_tag @post.post_image  %>
+</div
+> <div class="control-group"> 
+  <%= f.label :description  %>
+  <%= f.text_area :description, rows: 5 %>
+</div>
+<div class="control-group">
+  <h5>Categories:</h5>
+  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+    <%= cb.label(class: 'checkbox inline') { cb.check_box(class: 'checkbox') + cb.text } %>
+  <% end %>  
+</div>
+  <%= f.submit(@post.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-primary') %>
+<% end %>
+</div>
+
+
+<p>&#8220;`</p>
+
+<p>I hope that made some sense and now you have some idea of how I did it. It took a combination of JavaScript, jQuery, AJAX, a scrapper gem, and standard rails MVC. I&rsquo;m sure there are things that can be improved on and tweaked so please feel free to leave feedback.</p>
+
+<p>Thanks for reading!</p>
 ]]></content>
   </entry>
   
