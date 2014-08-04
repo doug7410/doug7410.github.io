@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | Doug S.]]></title>
   <link href="http://doug7410.github.io/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-03T21:50:35+00:00</updated>
+  <updated>2014-08-04T13:30:40+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Doug Steinberg]]></name>
@@ -12,6 +12,58 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby on Rails Project - Punch Clock App]]></title>
+    <link href="http://doug7410.github.io/blog/2014/07/16/rails-project-punch-clock-app/"/>
+    <updated>2014-07-16T22:45:21+00:00</updated>
+    <id>http://doug7410.github.io/blog/2014/07/16/rails-project-punch-clock-app</id>
+    <content type="html"><![CDATA[<p><img src="/images/punch-clock.jpg"></p>
+
+<p>So I&rsquo;m done with week 2 of the Tealeaf Ruby on Rails course and I&rsquo;ve learned to do basic CRUD ( create, read, update, delete) actions using Rail&rsquo;s resourses , models, form helpers, and views.</p>
+
+<p>I thought this would be a good time start on a side project I had saved in my back pocket. This would be a good chance to practice what I&rsquo;ve learned as well as start my own project. The idea is pretty simple, it&rsquo;s called &ldquo;Punch Clock&rdquo;, for now at least. It allows you to create different jobs or tasks, and then track the time you spent working on them. Here  the Github repository</p>
+
+<p><a href="https://github.com/doug7410/punch-clock">https://github.com/doug7410/punch-clock</a></p>
+
+<h4>The image above is what it looks like so far.</h4>
+
+<p>You can also click on the Job Title&rsquo;s  to see that job&rsquo;s detail&rsquo;s page There you will see a list of all the punches you&rsquo;ve made. Each punch out has the &ldquo;time on the clock&rdquo; next to it. So if you punch in at 8:00AM and punch out at 10:35AM, that punch will show your time like this &ldquo;0002:35:00&rdquo; . You just worked for 2 hours and 35 minutes! Go take a coffee break!</p>
+
+<p>The page will also show the total time worked on that job. Here&rsquo;s a screenshot of the <strong> job detail page </strong>.</p>
+
+<p><img src="/images/punch-clock2.jpg"></p>
+
+<p><strong> So far my list of features for this app are: </strong></p>
+
+<ul>
+<li>You can create jobs</li>
+<li>each job has a title and  description</li>
+<li>each job has punches</li>
+<li>each punch &ldquo;out&rdquo; uses the previous punch &ldquo;in&rdquo; to calculate the time on the clock</li>
+<li>each job has a running total of all the time worked</li>
+</ul>
+
+
+<p>That&rsquo;s it for now. Here is a list of what I want to add on</p>
+
+<ul>
+<li>add user authentication</li>
+<li>use javascript to have running clocks</li>
+<li>add notes to each punch so you can keep track of what was done during that time period</li>
+<li>have the ability to edit or delete punched</li>
+<li>be able to manually add punches</li>
+<li>ability to edit jobs and user profiles</li>
+<li>add hourly rate to jobs to keep track of earnings</li>
+<li>add reports to break down time worked by day, month, date-range, etc..</li>
+</ul>
+
+
+<p>That&rsquo;s all I have for now, but there are lots of possibilities with this.  I also want to have a nice graphic design, but that&rsquo;s not as important as the MVP right now.</p>
+
+<p>If you have any suggestions or questions please leave in the comments. Thanks!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Tealeaf - Rapid Prototyping With Ruby on Rails Cousre Done!]]></title>

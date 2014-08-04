@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://doug7410.github.io/blog/2014/07/16/rails-project-punch-clock-app/</loc>
+    <lastmod>2014-07-16T22:45:21+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://doug7410.github.io/blog/2014/07/16/rapid-prototyping-with-ruby-on-rails-course-done/</loc>
     <lastmod>2014-07-16T16:10:36+00:00</lastmod>
     <priority>0.8</priority>
@@ -29,14 +35,14 @@
   
   <url>
     <loc>http://doug7410.github.io/</loc>
-    <lastmod>2014-08-03T21:50:35+00:00</lastmod>
+    <lastmod>2014-08-04T13:30:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://doug7410.github.io/blog/archives/</loc>
-    <lastmod>2014-08-03T21:50:35+00:00</lastmod>
+    <lastmod>2014-08-04T13:30:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
