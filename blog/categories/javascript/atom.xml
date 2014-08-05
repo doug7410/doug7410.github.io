@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript | Doug's Web Development Blog]]></title>
   <link href="http://doug7410.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-04T22:18:41+00:00</updated>
+  <updated>2014-08-05T01:07:49+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Doug Steinberg]]></name>
@@ -206,7 +206,7 @@ $("#image_choices").slideDown(function(){
 <li>Once the image list is inside the <code>#images_container</code> , that div slides down. Keep in mind this is all happening on the create post or edit post page.</li>
 <li>After the <code>#images_container</code> slides down, the user clicks on an image to choose it and assign it to the post.</li>
 <li>once the chosen image has been clicked the <code>images_container</code> slides up and another hidden div, <code>#post_image</code> gets the chosen image inserted into it and slides down.</li>
-<li>there is also a hidden form field <code>#image_chocies</code>. The image URL is dynamically added to it&rsquo;s value attriubte.</li>
+<li>there is also a hidden form field <code>#post_post_images</code>. The image URL is dynamically added to it&rsquo;s value attriubte.</li>
 </ul>
 
 
