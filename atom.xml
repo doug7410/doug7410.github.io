@@ -4,7 +4,7 @@
   <title><![CDATA[Doug's Web Development Blog]]></title>
   <link href="http://doug7410.github.io/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-05T01:07:49+00:00</updated>
+  <updated>2014-08-14T14:56:41+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Doug Steinberg]]></name>
@@ -477,7 +477,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I hope that made some sense and now you have some idea of how I did it. It took a combination of JavaScript, jQuery, AJAX, a scrapper gem, and standard rails MVC. I&rsquo;m sure there are things that can be improved on and tweaked so please feel free to leave feedback.</p>
+<p>I hope that made some sense and now you have some idea of how I did it. It took a combination of JavaScript, jQuery, AJAX, a scraper gem, and standard rails MVC. I&rsquo;m sure there are things that can be improved on and tweaked so please feel free to leave feedback.</p>
 
 <p>Thanks for reading!</p>
 ]]></content>
@@ -813,21 +813,18 @@ Here is my code on GitHub - <a href="https://github.com/doug7410/postit-app">htt
 <ol>
 <li> A HTTP request comes into the <strong>Router</strong></li>
 <li> the router directs that request to the <strong>Controller</strong></li>
-<li> depending on what is in the request, the **Controller will do 1 of 3 things
+<li> depending on what is in the request, the <strong>Controller</strong> will do 1 of 3 things
 
 <ul>
-<li>redirect to the router Router**</li>
-<li>render a <strong>View</strong> template
-
-<ul>
+<li>redirect to the router <strong>Router</strong></li>
+<li>render a <strong>View</strong> template</li>
 <li>or reach into the <strong>Model</strong>. The <strong>Model</strong> can then retrieve data from the <strong>Database</strong> , send that back to the  <strong>Controller</strong>, and then render a <strong>View</strong></li>
-</ul>
-</li>
-<li><h4>Here is a nice diagram of rails:**</h4></li>
 </ul>
 </li>
 </ol>
 
+
+<h4>Here is a nice diagram of rails:</h4>
 
 <p><img src="http://doug7410.github.io/images/request_response_mvc.jpg"></p>
 
