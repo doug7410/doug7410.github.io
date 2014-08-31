@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Doug's Web Development Blog]]></title>
   <link href="http://doug7410.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-31T02:32:15+00:00</updated>
+  <updated>2014-08-31T17:37:01+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Doug Steinberg]]></name>
@@ -12,318 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Setting Up Nitrous.io for Ruby on Rails Development]]></title>
-    <link href="http://doug7410.github.io/blog/2014/08/30/setting-up-a-nitrous-dot-io-for-ruby-on-rails-development/"/>
-    <updated>2014-08-30T15:44:51+00:00</updated>
-    <id>http://doug7410.github.io/blog/2014/08/30/setting-up-a-nitrous-dot-io-for-ruby-on-rails-development</id>
-    <content type="html"><![CDATA[<p>Nitrous.io provides a great alternative for Ruby developers who are on Windows. In this post I&rsquo;ll share my setup for using nitrous with Ruby and Ruby on Rails.</p>
-
-<p>The main reason I use Nitrous is because I&rsquo;m on Windows, and as you probably know, Ruby development on Windows is quite a pain. There is another great benefit to Nitrous though. You will be able take your development box with you to any machine with an internet connection. I mostly switch between 2 computers, so having one development environment that I can use on any computer is a huge plus.</p>
-
-<h2>My Nitrous development workflow</h2>
-
-<ul>
-<li>Sublime Text 2</li>
-<li>Nitrous desktop</li>
-<li>Github</li>
-<li>any browser</li>
-</ul>
-
-
-<p>That&rsquo;s it. That&rsquo;s all you need to work with Nitrous on your computer</p>
-
-<p>Now I&rsquo;m going to walk you through setting up your development environment from start to finish</p>
-
-<h2>Go to Nitrous.io and get your box</h2>
-
-<ul>
-<li>Go to <a href="https://www.Nitrous.io/">https://www.Nitrous.io/</a> and sign up for an account. It it&rsquo;s free and super easy.</li>
-<li>Once you&rsquo;re signed up, go ahead an log in. You&rsquo;ll see a big green button <strong>&ldquo;Open Dashboard&rdquo;</strong>, go ahead and click it.</li>
-<li>They will ask you to pick a template, we&rsquo;re doing Ruby on Rails, so you&rsquo;ll click that. They also have templates for Node.js, Python/Django, Go, and PHP. We don&rsquo;t have to worry about them, but it&rsquo;s nice to know they&rsquo;re there.</li>
-<li>you can give your box a name or leave the one they choose for you.</li>
-<li>pick your region</li>
-<li>they also have an option for downloading a Github repo, but you should leave this blank. You can download you&rsquo;re repos from the command line once you get your box running.</li>
-<li>the next screen is &ldquo;Get More N2O&rdquo;. N2O is like credit for upgrading your box. You can use it to add more memory or storage. There are a few things you can do on this page, &ldquo;Connect GitHub&rdquo;, &ldquo;Connect Google&rdquo;, etc.. You can do these if you like, or just click next.</li>
-<li>the next page just has some info about using Nitrous on the web, or locally with a text editor. Just go to the bottom and click <strong>&ldquo;Okay, Take Me to my Box!&rdquo;</strong></li>
-</ul>
-
-
-<h2>Using your Nitrous box</h2>
-
-<p>The first thing you will see after setting up and going to your box is the Web IDE(integrated development environment). There are three main sections to the Web IDE</p>
-
-<ul>
-<li>the files pane(on the left)</li>
-<li>the editor(on the right)</li>
-<li>the console(on the bottom)</li>
-</ul>
-
-
-<p><img src="/images/IDE.jpg"></p>
-
-<p>In the files pane there will be a <strong>workspace</strong> folder already set up. This is an important folder because it&rsquo;s where all your files go that are synced with your desktop. (more about that later). There is also a nice readme file in there with some info on getting set up. This web based editor is nice, but if you like to use your own editor, like sublime, you&rsquo;ll probably get tired of using the web IDE pretty quickly. There&rsquo;s one more thing I want to show you before we set up Nitrous desktop.</p>
-
-<p>Click on the boxes link in the upper right corner of the screen</p>
-
-<p><img src="/images/boxes_link.jpg"></p>
-
-<p>This will take you to your boxes dashboard</p>
-
-<p><img src="/images/dash.jpg"></p>
-
-<p>You can always get back here by clicking on the <strong>Boxes</strong> link, or the <strong>Open Dashboard</strong> button on the Nitrous home page.</p>
-
-<p>Here you can see information on you box, how much memory it has, storage, your SSH URI, Preview URI, and Public Key. You can access the IDE and Terminal here. You can also adjust your box setting here. The settings allow you to add memory and storage, but you need to purchase N2O to do that.</p>
-
-<p>This is a good spot to set up your public key with github. This is necessary to push and pull code from Github, which you will hopefully be doing a lot!</p>
-
-<h3>Linking your box to Github with your public key</h3>
-
-<p>This step is super easy. You do need to have a Github account. If you don&rsquo;t have one yet,go create one at <a href="https://github.com">https://github.com</a></p>
-
-<p>On the dashboard click the link that says <strong>Reveal Public Key</strong></p>
-
-<p><img src="/images/public_key_link.jpg"></p>
-
-<p>This will create a public key. Click on the scissor icon to copy it to you clipboard.</p>
-
-<p><img src="/images/copy_key.jpg"></p>
-
-<p>Now go to your Github account. Go to your settings</p>
-
-<p><img src="/images/github_settings.jpg"></p>
-
-<p><strong>Inside of settings</strong></p>
-
-<ul>
-<li>click on <strong>SSH keys</strong> on the left side</li>
-<li>click <strong>Add SSH key</strong></li>
-<li>give your key a title, it could be something like &ldquo;Nitrous-ruby-box&rdquo;</li>
-<li>paste the key you copied from the Nitrous dashboard in the Key box</li>
-</ul>
-
-
-<p><img src="/images/adding_key.jpg"></p>
-
-<p>That&rsquo;s all there is to it! Now you can push and pull Github repos from your Nitrous box.</p>
-
-<h3>Setting up Nitrous desktop</h3>
-
-<p>Go to the Nitrous home page and click on desktop. You can also visit <a href="https://www.Nitrous.io/desktop#windows">https://www.Nitrous.io/desktop#windows</a> to go directly to the Nitrous Desktop page. It&rsquo;s available for Windows and Mac. I haven&rsquo;t tried out the Mac version, but it probably works much like the Windows version.</p>
-
-<p>Go ahead and download and run the application for your operating system. Once you get it set up it will ask you to log into your Nitrous account. After logging in it will give you a message saying you need to register a SSH key with Nitrous.io . If you already have a SSH key set up on your computer there will be a button to register it with Nitrous, if you don&rsquo;t have a SSH key, there will be a button to generate one and register it with Nitrous. Go ahead and take the appropriate action. After that you&rsquo;ll see the desktop application. It should look like this</p>
-
-<p><img src="/images/nitrous_desktop.jpg"></p>
-
-<p>Here is a rundown of the Nitrous desktop app from top to bottom</p>
-
-<ul>
-<li><strong>Boxes</strong> - this is a list of all the boxes you have on your account. When the box is running there will be a green dot next to it. When it&rsquo;s down there is s red dot. When it&rsquo;s restarting or shutting down there is a yellow dot</li>
-<li><strong>Shut Down and Restart</strong> - these are pretty self explanatory.</li>
-<li><strong>memory, storage, region, stack</strong> - this is just info on the specs for your box</li>
-<li><strong>SSH URI</strong> - you can use this to access your box via an SSH client like putty.</li>
-<li><strong>File Sync</strong> - toggle file synchronization on and off. This is what will allow you to work in your local text editor. More on this later</li>
-<li><strong>Port forwarding</strong> - this allows you to add ports so you can view your Rails and Sinatra apps in your local browser</li>
-<li><strong>IDE button</strong> - this will open a browser window with the Nitrous web based IDE</li>
-<li><strong>Shell button</strong> - this will open a terminal window with an instant connection to your box</li>
-</ul>
-
-
-<h3>Accessing your local Nitrous folder</h3>
-
-<p>Go headed and click the <strong>File Sync</strong> button to enable syncing with your local Nitrous folder. Once it&rsquo;s synced up it should say <strong>Monitoring</strong></p>
-
-<p><img src="/images/monitoring.jpg"></p>
-
-<p>Nitrous gives a shortcut to your local Nitrous folder. To get to it go to the Nitrous tray icon, right click, and choose <strong>Open Nitrous Folder&hellip;</strong></p>
-
-<p>This folder should be located at <code>C:\Users\YourUserName\Nitrous</code> . In here you should see a folder with the same name as your Nitrous box. Any files you put in this folder will go into the <strong>workspace</strong> folder on your remote Nitrous box. <strong>This is important, because it&rsquo;s easy to put files outside of the workspace folder when you&rsquo;re working in the command line, and you won&rsquo;t have access to them on your local machine</strong></p>
-
-<p>To clarify this , lets assume your box is called <strong>my-ruby-box</strong>. When you open your Nitrous folder, you&rsquo;ll see a folder inside of there called <strong>my-ruby-box</strong>. You need to create all your files and projects inside of there. You can work on these in you local text editor (like sublime) and keep them synced up with your box. Every time you save a file, Nitrous automatically syncs with your box. If you ever need to sync manually just click the <strong>Sync Now</strong> button on Nitrous desktop.</p>
-
-<p><img src="/images/sync_now.jpg"></p>
-
-<h3>Working with the terminal window</h3>
-
-<p>You can open a shell connection with your box by clicking the <strong>Shell</strong> button</p>
-
-<p><img src="/images/terminal.jpg"></p>
-
-<p>As I said before, all the files in your local Nitrous folder will be in the remote <strong>workspace</strong> folder, so you need to do <code>cd workspace</code> to get to them.</p>
-
-<p><strong>For example:</strong></p>
-
-<ul>
-<li>I&rsquo;ll create a file called <code>test.rb</code> in my local Nitrous folder and put some ruby code in there. I&rsquo;ll just put <code>puts 'hello Nitrous box user!'</code> in it.</li>
-<li>I&rsquo;ll save it and it will automatically sync with my box</li>
-<li>now in the terminal I&rsquo;ll navigate to the workspace folder <code>cd workspace</code>cd</li>
-<li>I can do a <code>ls</code> command to see that the file is actually there. Here is a screenshot, just to show you
-
-<ul>
-<li><img src="/images/ls_command.jpg"></li>
-</ul>
-</li>
-<li>now I can run my ruby file</li>
-</ul>
-
-
-<pre><code>action@beefy-harrenhal-69-141781:~/workspace$ ruby test.rb
-=&gt; hello Nitrous box user!
-</code></pre>
-
-<h3>Nitrous comes with git, ruby, rails, and heroku toolbelt already set up.</h3>
-
-<p>Here is a screen shot with all the current versions that come with nitrous.</p>
-
-<p><img src="/images/versions.jpg"></p>
-
-<p>NOTE: You can install ruby gems on your Nitrous box just like you do on any other machine. Just run <code>gem install &lt;some_gem&gt;</code></p>
-
-<h3>working with Rails and Sinatra apps in your local browser.</h3>
-
-<p>Nitrous desktop uses port forwarding to run apps on your local machine.</p>
-
-<ul>
-<li>rails uses port 3000</li>
-<li>sinatra uses 4567</li>
-<li>shotgun uses 9393</li>
-</ul>
-
-
-<p>You need to add any port you want to use for web development to the port list. Here&rsquo;s how:</p>
-
-<ul>
-<li><p>Turn on the port forwarding switch
-<img src="/images/turn_on_port_forwarding.jpg"></p></li>
-<li><p>add a port
-<img src="/images/add_port.jpg"></p></li>
-</ul>
-
-
-<p>Windows firewall will prompt you about network access. Check both boxes and click ok.</p>
-
-<ul>
-<li>Now you can go to the command line and run your app. Go to <code>locolhost:9393</code> in your browser to view it. You will change the port from 9393 to what ever port your app is runiung on. So if you&rsquo;re running a rails app it will probably be <code>localhost:3000</code>.</li>
-</ul>
-
-
-<p><strong>Here I&rsquo;m starting up a rails app</strong>
-<img src="/images/starting_rails_server.jpg"></p>
-
-<p><strong>Here it is running in the browser</strong>
-<img src="/images/browser_running_app.jpg"></p>
-
-<p><strong>and you can see port 3000 in the port forwarding list on Nitrous desktop</strong>
-<img src="/images/3000_in_the_list.jpg"></p>
-
-<p>That should be all the info you need to get going with basic Ruby and Ruby on Rails development with Nitrous. If you aren&rsquo;t doing TDD, then the information above is enough to give you a good workflow. If you are doing testing you&rsquo;ll want to continue reading below.</p>
-
-<h2>TDD&#8217;ing with Nitrous with Rspec, guard, and spring</h2>
-
-<p>If you&rsquo;re going to doing TDD in you Nitrous box you&rsquo;ll quickly realize it can get pretty slow. This is becase every time you make a change to your code and save, Nitrous has to sync your changes before you can run your test. This can take up to 10+ seconds to save, then another 10+ seconds for your tests to run. Guard and spring speed this up considerably and make TDD with Nitrous a lot more enjoyable. You need to be on rails 4 to use spring, but that&rsquo;s what Nitrous comes with, so it wont be a problem.</p>
-
-<p>Here&rsquo;s how to get it set up. Note, I got this information from <a href="http://girders.org/blog/2014/02/06/setup-rails-41-spring-rspec-and-guard/">Girders blog post</a></p>
-
-<p>You need these 3 gems in your Gemfile</p>
-
-<ul>
-<li><a href="http://rubygems.org/gems/rspec-rails">rspec-rails</a> - The RSpec testing framework with Rails integration</li>
-<li><a href="http://rubygems.org/gems/spring-commands-rspec">spring-commands-rspec</a> - Adds rspec command for spring. Includes a dependency for the <a href="http://rubygems.org/gems/spring">spring</a> Rails application preloader.</li>
-<li><a href="http://rubygems.org/gems/guard-rspec">guard-rspec</a> - The Guard file watcher for running rspec</li>
-</ul>
-
-
-<p>Add these to the development and test group in the Gemfile of your project</p>
-
-<pre><code class="ruby">group :development, :test do
-  gem 'spring-commands-rspec'
-  gem 'rspec-rails'
-  gem 'guard-rspec'
-end
-</code></pre>
-
-<p>Run bundler to install the gems</p>
-
-<pre><code>$ bundle install --without production
-</code></pre>
-
-<p><strong>Set up spring</strong></p>
-
-<p>Run  <code>spring binstub --all</code>.</p>
-
-<pre><code>$ spring binstub --all
-* bin/rake: spring already present
-* bin/rspec: generated with spring
-* bin/rails: spring already present
-</code></pre>
-
-<p>This does the configuration to let spring work with rspec. More info here <a href="http://girders.org/blog/2014/02/06/setup-rails-41-spring-rspec-and-guard/">http://girders.org/blog/2014/02/06/setup-rails-41-spring-rspec-and-guard/</a></p>
-
-<p><strong>Set up guard and Rspec</strong></p>
-
-<p>NOTE: if you already have Rspec set up skip the first line below and just do <code>guard init</code></p>
-
-<p>NOTE: you may need to run <code>bundle exec guard init</code> instead if just <code>guard init</code></p>
-
-<p>NOTE: you will need to sync your files manually from Nitrous desktop to open them on your local machine for editing becase nitrous desktop wont know there are any changes</p>
-
-<pre><code class="ruby">$ rails g rspec:install
-      create  .rspec
-      create  spec
-      create  spec/spec_helper.rb
-$ guard init
-11:32:14 - INFO - Writing new Guardfile to /Users/username/src/myapp/Guardfile
-11:32:14 - INFO - rspec guard added to Guardfile, feel free to edit it
-</code></pre>
-
-<p>Now we have to tell guard to use the spring runner when using rspec. Edit your Guardfile and change the command for rspec to spring rspec. The Guardfile will be in your main app directory right next to the Gemfile.</p>
-
-<p>Change this line:</p>
-
-<pre><code class="ruby">guard :rspec, cmd: 'bundle exec rspec' do
-</code></pre>
-
-<p>to</p>
-
-<pre><code class="ruby">guard :rspec, cmd: 'spring rspec' do
-</code></pre>
-
-<h3>Start up guard and you&rsquo;re ready to do TDD on your Nitrous box</h3>
-
-<p>To start up guard and spring just run the <code>guard</code> command from your project directory. You might need to do <code>bundle exec guard</code>. This will watch your app for changes and starts up the <code>spring rspec</code> command for when you&rsquo;re working with anything related to your test suite.</p>
-
-<pre><code>$ bundle exec gurd
-23:18:45 - INFO - Guard is using TerminalTitle to send notifications.
-23:18:46 - INFO - Guard::RSpec is running
-23:18:46 - INFO - Guard is now watching at '/home/action/workspace/your-rails-app'
-[1] guard(main)&gt;
-</code></pre>
-
-<p>If you need to change something basic in your app, such as adding a gem, updating a local dependency that could be cached, you need to restart both guard (Ctrl-D at the console) (or a server or console process), and spring (spring stop). Restarting guard will restart spring as well, with your dependencies reloaded.</p>
-
-<h3>One last tip I want to share for doing TDD with Nitrous and guard.</h3>
-
-<p>Every time you save a file Nitrous has to sync up your local file with the remote. It can take a little time to do this, so it would be nice to know what&rsquo;s going on. Nitrous desktop has a nice little tray icon that shows a little refresh symbol wile the synchronization is in progress. I like to drag this out to my task bar so I can see it. Normally you would have to click the little up arrow on the right side of your task bar to see the icon, but you can drag this down to the taskbar so it&rsquo;s always visible.</p>
-
-<p><img src="/images/tray_icon_1.jpg"></p>
-
-<p>After dragging to taskbar</p>
-
-<p><img src="/images/tray_icon_2.jpg"></p>
-
-<p>Here&rsquo;s what it looks like while it&rsquo;s syncing your files</p>
-
-<p><img src="/images/while_synching.jpg"></p>
-
-<p>This part isn&rsquo;t essential, but it does make developing with Nitrous just a little bit nicer.</p>
-
-<h2>Conclusion</h2>
-
-<p>I hope this post takes some of the pain out of setting up a Ruby development environment with Nitrous. It takes a little time to get used to, but it&rsquo;s a great solution for windows users. They also have a lot of team collaboration features that I&rsquo;ve never even looked in to. Another nice thing is the tech support is fantastic. I&rsquo;ve only had a handful of issues with the service, but they usually get resolved very quickly.</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[How I Added Images to My Postit App With AJAX and MetaInspector]]></title>
@@ -1086,6 +774,64 @@ end
 
 
 <p>In this post I talked a little about the MVC pattern in rails, the flow of Rails, creating tables with migrations, and models. In the next post I&rsquo;ll talk about model associations.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Putting It All Together. Web Development With Ruby, HTTP, Ajax , MVC With Sinatra]]></title>
+    <link href="http://doug7410.github.io/blog/2014/06/17/putting-it-all-together-HTTP-MVC-Ajax-and-Sinatra/"/>
+    <updated>2014-06-17T12:20:36+00:00</updated>
+    <id>http://doug7410.github.io/blog/2014/06/17/putting-it-all-together-HTTP-MVC-Ajax-and-Sinatra</id>
+    <content type="html"><![CDATA[<p><img class="<a" src="href="http://www.duskyswondersite.com/wp-content/uploads/2014/07/North-Queensferry-Fife-Scotland-by-David-Cation.jpg">http://www.duskyswondersite.com/wp-content/uploads/2014/07/North-Queensferry-Fife-Scotland-by-David-Cation.jpg</a>&#8221;></p>
+
+<p>I just finished up <a href="http://www.gotealeaf.com">Tealeaf Academy</a> course 1 of 3 . It&rsquo;s has been an outstanding learning experience! I feel like I&rsquo;ve come really far as a programmer, and I can take on small projects in Ruby on my own. When I say small projects I mean a simple program that doesn&rsquo;t require a database (databases are in course 2), like a game. I&rsquo;ve done blackjack and tic-tac-toe, so I guess the next game could be something like checkers or hangman. If you have any ideas feel free to leave them in the comments. Maybe we could collaborate on a game or other small project. It might be a fun side project.</p>
+
+<p>Anyway&hellip;.here&rsquo;s a recap of what I&rsquo;ve learned since my last post. Here is the <a href="http://infinite-waters-7065.herokuapp.com">Blackjack Game</a> I made while learning all of these things. <!--more--></p>
+
+<h2>HTTP</h2>
+
+<p>The heart of web development is HTTP. It&rsquo;s a stateless protocol for communicating between distributed systems.  In the case of web development it&rsquo;s usually a server and a client (browser). <a href="http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177">This article</a> goes into detail about HTTP.</p>
+
+<h2>Sinatra</h2>
+
+<p>Sinatra is a lightweight MCV framework for ruby. Below is a diagram of the MVC arcitecture.</p>
+
+<p><img src="/images/sinatra.jpg"></p>
+
+<p>In Sinatra , HTTP request are handled via routs. Routs are stored in controller, then depending on what the rout does, either a template is rendered or the request is redirected to another rout. You can read the Sinatra documentation <a href="http://www.sinatrarb.com/intro.html">here</a>.</p>
+
+<h2>Helper methods in Sinatra</h2>
+
+<p>Sinatra gives you the ability to create helper methods. These can be used in the controller and view templates. These are really handy for cleaning up your code and re-factoring.</p>
+
+<h2>AJAX</h2>
+
+<p>Ajax uses javascript to reload a section of a page without having to reload everything on the page. Below is an example of a simple ajax function with jQuery.</p>
+
+<pre><code class="javascript A simple AjAX call with jQuery">function player_hits(){
+$(document).on("click", "form#hit_form input", function(){ 
+
+$.ajax({
+type: "POST",
+url: "/game/player/hit"
+}).done(function(msg){
+$("#game").replaceWith(msg);
+});
+return false;
+});
+}
+</code></pre>
+
+<p>Course one has been challenging and I spent a LOT of time on it. I built 3 versions of  the Blackjack game.</p>
+
+<ol>
+<li> <a href="https://github.com/doug7410/tealeaf_course_1/blob/master/blackjack.rb">command line - procedural</a></li>
+<li> <a href="https://github.com/doug7410/tealeaf_course_1/blob/master/OO_blackjack.rb">command line - Object Oriented</a></li>
+<li> <a href="http://infinite-waters-7065.herokuapp.com">web based procedural with Sinatra</a></li>
+</ol>
+
+
+<p>I feel like I&rsquo;ve come a long way, but I know it&rsquo;s just the beginning. My next post with be about Ruby on Rails!</p>
 ]]></content>
   </entry>
   
