@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nitrous.io | Doug's Web Development Blog]]></title>
   <link href="http://doug7410.github.io/blog/categories/nitrous-dot-io/atom.xml" rel="self"/>
   <link href="http://doug7410.github.io/"/>
-  <updated>2014-08-31T02:04:49+00:00</updated>
+  <updated>2014-08-31T02:32:15+00:00</updated>
   <id>http://doug7410.github.io/</id>
   <author>
     <name><![CDATA[Doug Steinberg]]></name>
@@ -101,13 +101,13 @@
 <li>click on <strong>SSH keys</strong> on the left side</li>
 <li>click <strong>Add SSH key</strong></li>
 <li>give your key a title, it could be something like &ldquo;Nitrous-ruby-box&rdquo;</li>
-<li>past the key you copied from the Nitrous dashboard in the Key box</li>
+<li>paste the key you copied from the Nitrous dashboard in the Key box</li>
 </ul>
 
 
 <p><img src="/images/adding_key.jpg"></p>
 
-<p>That&rsquo;s all there is to it. Now you can access your github account from your Nitrous box.</p>
+<p>That&rsquo;s all there is to it! Now you can push and pull Github repos from your Nitrous box.</p>
 
 <h3>Setting up Nitrous desktop</h3>
 
@@ -141,19 +141,19 @@
 
 <p>This folder should be located at <code>C:\Users\YourUserName\Nitrous</code> . In here you should see a folder with the same name as your Nitrous box. Any files you put in this folder will go into the <strong>workspace</strong> folder on your remote Nitrous box. <strong>This is important, because it&rsquo;s easy to put files outside of the workspace folder when you&rsquo;re working in the command line, and you won&rsquo;t have access to them on your local machine</strong></p>
 
-<p>To clarify this , lets assume your box is called <strong>my-ruby-box</strong>. When you open your Nitrous folder, you&rsquo;ll see a folder inside of there called <strong>my-ruby-box</strong>. You need to create all your files and projects inside of there. You can work on these in you local text editor (like sublime) and keep them synced up with your box. Every time you save a file Nitrous automatically syncs with your box. If you ever need to sync manually just click the <strong>Sync Now</strong> button on Nitrous desktop.</p>
+<p>To clarify this , lets assume your box is called <strong>my-ruby-box</strong>. When you open your Nitrous folder, you&rsquo;ll see a folder inside of there called <strong>my-ruby-box</strong>. You need to create all your files and projects inside of there. You can work on these in you local text editor (like sublime) and keep them synced up with your box. Every time you save a file, Nitrous automatically syncs with your box. If you ever need to sync manually just click the <strong>Sync Now</strong> button on Nitrous desktop.</p>
 
 <p><img src="/images/sync_now.jpg"></p>
 
 <h3>Working with the terminal window</h3>
 
-<p>You can open a shell connection with your box by clicking the <em>Shell</em> button</p>
+<p>You can open a shell connection with your box by clicking the <strong>Shell</strong> button</p>
 
 <p><img src="/images/terminal.jpg"></p>
 
-<p>As I said before, all the files in your local Nitrous folder will be in the remote <em>workspace folder</em>, so you need to do <code>cd workspace</code> to got to them.</p>
+<p>As I said before, all the files in your local Nitrous folder will be in the remote <strong>workspace</strong> folder, so you need to do <code>cd workspace</code> to get to them.</p>
 
-<p>For example:</p>
+<p><strong>For example:</strong></p>
 
 <ul>
 <li>I&rsquo;ll create a file called <code>test.rb</code> in my local Nitrous folder and put some ruby code in there. I&rsquo;ll just put <code>puts 'hello Nitrous box user!'</code> in it.</li>
@@ -173,9 +173,9 @@
 =&gt; hello Nitrous box user!
 </code></pre>
 
-<p>Nitrous comes with git, ruby, rails, and heroku toolbelt already set up.</p>
+<h3>Nitrous comes with git, ruby, rails, and heroku toolbelt already set up.</h3>
 
-<h3>installing ruby gems</h3>
+<p>Here is a screen shot with all the current versions that come with nitrous.</p>
 
 <p><img src="/images/versions.jpg"></p>
 
@@ -205,7 +205,7 @@
 <p>Windows firewall will prompt you about network access. Check both boxes and click ok.</p>
 
 <ul>
-<li>Now you can go to the command line and run your app. You will now be able to access your app in a local browser at <code>locolhost:9393</code> You will change the port from 9393 to what ever port your app is runiung on. So if you&rsquo;re running a rails app it will probably be <code>localhost:3000</code>.</li>
+<li>Now you can go to the command line and run your app. Go to <code>locolhost:9393</code> in your browser to view it. You will change the port from 9393 to what ever port your app is runiung on. So if you&rsquo;re running a rails app it will probably be <code>localhost:3000</code>.</li>
 </ul>
 
 
@@ -267,7 +267,7 @@ end
 
 <p>NOTE: you may need to run <code>bundle exec guard init</code> instead if just <code>guard init</code></p>
 
-<p>NOTE: you will need to sync your files manually from Nitrous desktop to open them on your local machine for editing</p>
+<p>NOTE: you will need to sync your files manually from Nitrous desktop to open them on your local machine for editing becase nitrous desktop wont know there are any changes</p>
 
 <pre><code class="ruby">$ rails g rspec:install
       create  .rspec
@@ -290,14 +290,14 @@ $ guard init
 <pre><code class="ruby">guard :rspec, cmd: 'spring rspec' do
 </code></pre>
 
-<h3>Start up guard and do TDD on your Nitrous box</h3>
+<h3>Start up guard and you&rsquo;re ready to do TDD on your Nitrous box</h3>
 
 <p>To start up guard and spring just run the <code>guard</code> command from your project directory. You might need to do <code>bundle exec guard</code>. This will watch your app for changes and starts up the <code>spring rspec</code> command for when you&rsquo;re working with anything related to your test suite.</p>
 
 <pre><code>$ bundle exec gurd
 23:18:45 - INFO - Guard is using TerminalTitle to send notifications.
 23:18:46 - INFO - Guard::RSpec is running
-23:18:46 - INFO - Guard is now watching at '/home/action/workspace/punch-clock'
+23:18:46 - INFO - Guard is now watching at '/home/action/workspace/your-rails-app'
 [1] guard(main)&gt;
 </code></pre>
 
@@ -305,7 +305,7 @@ $ guard init
 
 <h3>One last tip I want to share for doing TDD with Nitrous and guard.</h3>
 
-<p>Every time you save a file Nitrous has to sync up your local file with the remote. It can take a little time to do this, so it would be nice to know what&rsquo;s going on. Nitrous desktop has a nice little tray icon that shows a little refresh symbol wile the synchronization is in progress. I like to drag this out to my task bar so I can see it. Normally you would have to click the little up arrow on the right side of your task bar to see the icon, nut you can drag this down to the taskbar so it&rsquo;s always visible.</p>
+<p>Every time you save a file Nitrous has to sync up your local file with the remote. It can take a little time to do this, so it would be nice to know what&rsquo;s going on. Nitrous desktop has a nice little tray icon that shows a little refresh symbol wile the synchronization is in progress. I like to drag this out to my task bar so I can see it. Normally you would have to click the little up arrow on the right side of your task bar to see the icon, but you can drag this down to the taskbar so it&rsquo;s always visible.</p>
 
 <p><img src="/images/tray_icon_1.jpg"></p>
 
@@ -321,9 +321,7 @@ $ guard init
 
 <h2>Conclusion</h2>
 
-<p>I hope this post takes some of the pain out of setting up a Ruby development environment with Nitrous. It takes a little time to get used to, but it&rsquo;s a great solution for windows users. They also have a lot of team collaboration features that I&rsquo;ve never even looked in to. Another nice thing is the tech support is fantastic. I&rsquo;ve only have a handful of issues with the service, but they usually get resolved very quickly.</p>
-
-<p>hhh</p>
+<p>I hope this post takes some of the pain out of setting up a Ruby development environment with Nitrous. It takes a little time to get used to, but it&rsquo;s a great solution for windows users. They also have a lot of team collaboration features that I&rsquo;ve never even looked in to. Another nice thing is the tech support is fantastic. I&rsquo;ve only had a handful of issues with the service, but they usually get resolved very quickly.</p>
 ]]></content>
   </entry>
   
