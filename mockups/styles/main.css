@@ -33,6 +33,18 @@ header {
     line-height: 1.7rem;
     letter-spacing: 2px;
     color: #f0fdfd; }
+    @media screen and (max-width: 500px) {
+      header .logo {
+        font-size: 1rem;
+        width: 154px; } }
+  @media screen and (max-width: 650px) {
+    header ul {
+      display: none; } }
+  header .hamburger {
+    font-size: 2rem; }
+    @media screen and (min-width: 650px) {
+      header .hamburger {
+        display: none; } }
   header li {
     display: inline-block;
     margin-left: .6rem;
@@ -59,8 +71,11 @@ header {
     text-transform: uppercase; }
   .portfolio .items {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: .5rem; }
+    @media screen and (max-width: 1119px) and (min-width: 451px) {
+      .portfolio .items {
+        grid-template-columns: 1fr 1fr; } }
     @media screen and (min-width: 1120px) {
       .portfolio .items {
         grid-template-columns: 1fr 1fr 1fr; } }
@@ -69,8 +84,11 @@ header {
     position: relative;
     z-index: 1;
     height: 0;
-    padding-top: 100%;
+    padding-top: 75%;
     overflow: hidden; }
+    @media screen and (min-width: 451px) {
+      .portfolio .item {
+        padding-top: 100%; } }
     .portfolio .item::before {
       content: "";
       position: absolute;
