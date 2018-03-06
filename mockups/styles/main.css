@@ -10,6 +10,9 @@ body {
   color: #93979b;
   font-family: 'Montserrat', sans-serif;
   margin-top: 4.5rem; }
+  @media screen and (max-width: 500px) {
+    body {
+      margin-top: 3.5rem; } }
 
 header {
   background-color: #93979b;
@@ -24,6 +27,9 @@ header {
   left: 0;
   right: 0;
   z-index: 100; }
+  @media screen and (max-width: 500px) {
+    header {
+      height: 3.5rem; } }
   header .logo {
     font-weight: bold;
     font-size: 1.3rem;
@@ -35,8 +41,8 @@ header {
     color: #f0fdfd; }
     @media screen and (max-width: 500px) {
       header .logo {
-        font-size: 1rem;
-        width: 154px; } }
+        font-size: .8rem;
+        width: 129px; } }
   @media screen and (max-width: 650px) {
     header ul {
       display: none; } }
