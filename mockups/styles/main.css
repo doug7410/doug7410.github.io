@@ -1,0 +1,150 @@
+@import url(resets.css);
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+h1, h2, h3, h4, h5, p {
+  margin: 1rem 0; }
+
+h1, h2, h3, h4, h4 {
+  font-family: 'Montserrat', sans-serif; }
+
+body {
+  color: #93979b;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 4.5rem; }
+
+header {
+  background-color: #93979b;
+  color: #f0fdfd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.5rem;
+  padding: 0 1.6rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100; }
+  header .logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    width: 192px;
+    text-align: justify;
+    line-height: 1.7rem;
+    letter-spacing: 2px;
+    color: #f0fdfd; }
+  header li {
+    display: inline-block;
+    margin-left: .6rem;
+    font-size: 1.1rem; }
+  header a {
+    color: #f0fdfd;
+    text-decoration: none;
+    transition: .2s; }
+  header a:hover {
+    text-decoration: underline;
+    color: #f7bcae; }
+
+.banner-container {
+  background: url("../images/01_bg.jpg") center no-repeat;
+  background-size: cover;
+  height: 0;
+  width: 100%;
+  padding-top: 56%; }
+
+.portfolio {
+  padding: 0 .5rem .5rem; }
+  .portfolio h1 {
+    text-align: center;
+    text-transform: uppercase; }
+  .portfolio .items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: .5rem; }
+    @media screen and (min-width: 1120px) {
+      .portfolio .items {
+        grid-template-columns: 1fr 1fr 1fr; } }
+  .portfolio .item {
+    color: #f0fdfd;
+    position: relative;
+    z-index: 1;
+    height: 0;
+    padding-top: 100%;
+    overflow: hidden; }
+    .portfolio .item::before {
+      content: "";
+      position: absolute;
+      top: -2%;
+      left: 0;
+      width: 100%;
+      height: 102%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      transition: .3s; }
+    .portfolio .item:hover {
+      cursor: pointer; }
+      .portfolio .item:hover h2 {
+        font-size: 1.8rem; }
+      .portfolio .item:hover::before {
+        transform: translate(0px, 0.5rem); }
+      .portfolio .item:hover small {
+        opacity: 1; }
+    .portfolio .item h2 {
+      position: absolute;
+      text-transform: uppercase;
+      text-align: center;
+      width: 100%;
+      top: 10%;
+      letter-spacing: .2rem;
+      transition: .3s; }
+    .portfolio .item small {
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      display: block;
+      text-align: center;
+      font-size: 1.1rem;
+      padding: .5rem 10%;
+      opacity: 0;
+      transition: .3s;
+      line-height: 1.5rem; }
+    .portfolio .item h2, .portfolio .item small {
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
+    .portfolio .item-1::before {
+      background-image: url("../images/tunnel_view.jpg"); }
+    .portfolio .item-2::before {
+      background-image: url("../images/02_bg.jpg"); }
+    .portfolio .item-3::before {
+      background-image: url("../images/03_bg.jpg"); }
+    .portfolio .item-4::before {
+      background-image: url("../images/04_bg.jpg"); }
+    .portfolio .item-5::before {
+      background-image: url("../images/05_bg.jpg"); }
+    .portfolio .item-6::before {
+      background-image: url("../images/06_bg.jpg"); }
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: #93979b;
+  color: #d0e2ed;
+  padding: .5rem; }
+  .footer a {
+    color: #d0e2ed;
+    text-decoration: none; }
+    .footer a:hover {
+      color: #f7bcae; }
+  .footer .copy span {
+    line-height: 2rem; }
+  .footer .social li {
+    display: inline-block;
+    font-size: 2rem;
+    padding: .5rem; }
+  .footer .social ul {
+    text-align: center;
+    align-self: center; }
+  .footer nav {
+    padding-left: 50%;
+    max-width: 50%;
+    line-height: 1.5rem; }

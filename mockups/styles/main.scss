@@ -1,0 +1,209 @@
+@import "resets.css";
+@import "colors";
+@import "global";
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+  color: $dark;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 4.5rem;
+}
+
+//header*************************************************************
+header {
+  background-color: $dark;
+  color: $light;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.5rem;
+  padding: 0 1.6rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  .logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    width: 192px;
+    text-align: justify;
+    line-height: 1.7rem;
+    letter-spacing: 2px;
+    color: $light;
+  }
+
+  li {
+    display: inline-block;
+    margin-left: .6rem;
+    font-size: 1.1rem;
+  }
+
+  a {
+    color: $light;
+    text-decoration: none;
+    transition: .2s
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: $melon;
+  }
+}
+
+//banner*************************************************************
+.banner-container {
+  background: url("../images/01_bg.jpg") center no-repeat;
+  background-size: cover;
+  height: 0;
+  width: 100%;
+  padding-top: 56%;
+}
+
+//portfolio**********************************************************
+.portfolio {
+  padding: 0 .5rem .5rem;
+
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @media screen and (min-width: 1120px){
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    grid-gap: .5rem;
+  }
+
+  .item {
+    color: $light;
+    position: relative;
+    z-index: 1;
+    height: 0;
+    padding-top: 100%;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -2%;
+      left: 0;
+      width: 100%;
+      height: 102%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      transition: .3s
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      &::before {
+        transform: translate(0px, .5rem);
+      }
+
+      small {
+        opacity: 1;
+      }
+    }
+
+    h2 {
+      position: absolute;
+      text-transform: uppercase;
+      text-align: center;
+      width: 100%;
+      top: 10%;
+      letter-spacing: .2rem;
+      transition: .3s;
+    }
+
+    small {
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      display: block;
+      text-align: center;
+      font-size: 1.1rem;
+      padding: .5rem 10%;
+      opacity: 0;
+      transition: .3s;
+      line-height: 1.5rem;
+    }
+
+    h2, small {
+      text-shadow: 0 0 10px rgba(0,0,0, .7);
+    }
+
+    &-1::before {
+      background-image: url("../images/tunnel_view.jpg");
+    }
+
+    &-2::before {
+      background-image: url("../images/02_bg.jpg");
+    }
+    &-3::before {
+      background-image: url("../images/03_bg.jpg");
+    }
+    &-4::before {
+      background-image: url("../images/04_bg.jpg");
+    }
+    &-5::before {
+      background-image: url("../images/05_bg.jpg");
+    }
+    &-6::before {
+      background-image: url("../images/06_bg.jpg");
+    }
+  }
+}
+
+//footer*************************************************************
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: $dark;
+  color: $lightBlue;
+  padding: .5rem;
+
+  a {
+    color: $lightBlue;
+    text-decoration: none;
+
+    &:hover {
+      color: $melon;
+    }
+  }
+
+  .copy span{
+    line-height: 2rem;
+  }
+
+  .social li {
+    display: inline-block;
+    font-size: 2rem;
+    padding: .5rem;
+  }
+
+  .social ul {
+    text-align: center;
+    align-self: center;
+  }
+
+  nav {
+    padding-left: 50%;
+    max-width: 50%;
+    line-height: 1.5rem;
+  }
+}
+
