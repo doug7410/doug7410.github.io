@@ -1,26 +1,23 @@
 @import url(resets.css);
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700");
 h1, h2, h3, h4, h5, p {
   margin: 1rem 0; }
 
-h1, h2, h3, h4, h4 {
-  font-family: 'Montserrat', sans-serif; }
-
 body {
-  color: #93979b;
+  color: #93979B;
   font-family: 'Montserrat', sans-serif;
-  margin-top: 4.5rem; }
+  margin-top: 4rem; }
   @media screen and (max-width: 500px) {
     body {
-      margin-top: 3.5rem; } }
+      margin-top: 3rem; } }
 
 header {
-  background-color: #93979b;
-  color: #f0fdfd;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #F0FDFD;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4.5rem;
+  height: 4rem;
   padding: 0 1.6rem;
   position: fixed;
   top: 0;
@@ -29,7 +26,7 @@ header {
   z-index: 100; }
   @media screen and (max-width: 500px) {
     header {
-      height: 3.5rem; } }
+      height: 3rem; } }
   header .logo {
     font-weight: bold;
     font-size: 1.3rem;
@@ -38,7 +35,7 @@ header {
     text-align: justify;
     line-height: 1.7rem;
     letter-spacing: 2px;
-    color: #f0fdfd; }
+    color: #F0FDFD; }
     @media screen and (max-width: 500px) {
       header .logo {
         font-size: .8rem;
@@ -53,15 +50,18 @@ header {
         display: none; } }
   header li {
     display: inline-block;
-    margin-left: .6rem;
+    margin-left: 1rem;
     font-size: 1.1rem; }
   header a {
-    color: #f0fdfd;
+    color: #F0FDFD;
     text-decoration: none;
-    transition: .2s; }
+    transition: .2s;
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: 300;
+    letter-spacing: .1rem; }
   header a:hover {
-    text-decoration: underline;
-    color: #f7bcae; }
+    color: #F7BCAE; }
 
 .banner-container {
   background: url("../images/01_bg.jpg") center no-repeat;
@@ -71,10 +71,18 @@ header {
   padding-top: 56%; }
 
 .portfolio {
-  padding: 0 .5rem .5rem; }
+  padding: 0 .5rem; }
   .portfolio h1 {
     text-align: center;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    color: #d0e2ed;
+    border: solid 1px;
+    height: 3rem;
+    background-color: #93979b;
+    margin: 2.5rem 0 .5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
   .portfolio .items {
     display: grid;
     grid-template-columns: 1fr;
@@ -86,7 +94,7 @@ header {
       .portfolio .items {
         grid-template-columns: 1fr 1fr 1fr; } }
   .portfolio .item {
-    color: #f0fdfd;
+    color: #F0FDFD;
     position: relative;
     z-index: 1;
     height: 0;
@@ -121,7 +129,8 @@ header {
       width: 100%;
       top: 10%;
       letter-spacing: .2rem;
-      transition: .3s; }
+      transition: .3s;
+      font-weight: normal; }
     .portfolio .item small {
       position: absolute;
       top: 40%;
@@ -150,25 +159,33 @@ header {
 
 .footer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  background-color: #93979b;
-  color: #d0e2ed;
-  padding: .5rem; }
+  background-color: #000;
+  color: #D0E2ED;
+  padding: .5rem;
+  font-size: .8rem;
+  text-align: center; }
   .footer a {
-    color: #d0e2ed;
+    color: #D0E2ED;
     text-decoration: none; }
     .footer a:hover {
-      color: #f7bcae; }
-  .footer .copy span {
-    line-height: 2rem; }
+      color: #F7BCAE; }
+  .footer .copy div {
+    line-height: 2rem;
+    font-size: .6rem; }
   .footer .social li {
     display: inline-block;
-    font-size: 2rem;
-    padding: .5rem; }
+    font-size: 1.5rem;
+    padding: .2rem; }
   .footer .social ul {
     text-align: center;
-    align-self: center; }
+    align-self: center;
+    margin: .5rem 0; }
   .footer nav {
-    padding-left: 50%;
-    max-width: 50%;
-    line-height: 1.5rem; }
+    line-height: 1.5rem;
+    margin-bottom: .5rem; }
+    .footer nav li {
+      display: inline-block;
+      margin: 0 .5rem; }
+  .footer .logo img {
+    margin-top: .5rem;
+    max-width: 10rem; }
