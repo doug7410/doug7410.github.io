@@ -6,9 +6,18 @@ h1, h2, h3, h4, h5, p {
 body {
   color: #93979B;
   font-family: 'Montserrat', sans-serif;
-  margin-top: 4rem; }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; }
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 4rem;
+  margin-bottom: .5rem; }
   @media screen and (max-width: 500px) {
-    body {
+    .container {
       margin-top: 3rem; } }
 
 header {
@@ -60,6 +69,9 @@ header {
     font-size: .8rem;
     font-weight: 300;
     letter-spacing: .1rem; }
+  header a.active {
+    font-weight: bold;
+    color: #F7BCAE; }
   header a:hover {
     color: #F7BCAE; }
 
@@ -68,7 +80,9 @@ header {
   background-size: cover;
   height: 0;
   width: 100%;
-  padding-top: 56%; }
+  padding-top: 56%;
+  display: flex;
+  flex: 1; }
 
 .portfolio {
   padding: 0 .5rem; }
@@ -155,6 +169,81 @@ header {
     .portfolio .item-5::before {
       background-image: url("../images/05_bg.jpg"); }
     .portfolio .item-6::before {
+      background-image: url("../images/06_bg.jpg"); }
+
+.category {
+  padding: .5rem; }
+  .category-heading {
+    text-align: center;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    background-color: #fff;
+    height: 10rem;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; }
+    .category-heading p {
+      margin: 0 0 .5rem 0; }
+  .category h1 {
+    font-weight: normal; }
+  .category .items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-gap: .5rem;
+    margin-top: 5.5rem; }
+  .category .item {
+    color: #F0FDFD;
+    position: relative;
+    z-index: 1;
+    height: 0;
+    padding-top: 75%;
+    overflow: hidden; }
+    @media screen and (min-width: 451px) {
+      .category .item {
+        padding-top: 100%; } }
+    .category .item::before {
+      content: "";
+      position: absolute;
+      top: -2%;
+      left: 0;
+      width: 100%;
+      height: 102%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      transition: .3s; }
+    .category .item:hover {
+      cursor: pointer; }
+      .category .item:hover::before {
+        transform: translate(0px, 0.5rem); }
+      .category .item:hover small {
+        opacity: 1; }
+    .category .item small {
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      display: block;
+      text-align: center;
+      font-size: 1.1rem;
+      padding: .5rem 10%;
+      opacity: 0;
+      transition: .3s;
+      line-height: 1.5rem; }
+    .category .item small {
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); }
+    .category .item-1::before {
+      background-image: url("../images/tunnel_view.jpg"); }
+    .category .item-2::before {
+      background-image: url("../images/02_bg.jpg"); }
+    .category .item-3::before {
+      background-image: url("../images/03_bg.jpg"); }
+    .category .item-4::before {
+      background-image: url("../images/04_bg.jpg"); }
+    .category .item-5::before {
+      background-image: url("../images/05_bg.jpg"); }
+    .category .item-6::before {
       background-image: url("../images/06_bg.jpg"); }
 
 .footer {

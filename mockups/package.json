@@ -6,7 +6,8 @@
   "scripts": {
     "build-css": "node-sass --include-path scss styles/main.scss styles/main.css",
     "watch-css": "nodemon -e scss -x \"yarn build-css\"",
-    "dev": "yarn watch-css & browser-sync start -s './' -f './'"
+    "dev": "yarn watch-css & browser-sync start -s './' -f './' --no-notify",
+    "start": "yarn dev"
   },
   "devDependencies": {
     "browser-sync": "^2.23.6",
