@@ -278,3 +278,43 @@ header {
   .footer .logo img {
     margin-top: .5rem;
     max-width: 10rem; }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: space-around; }
+  .modal-content {
+    position: relative;
+    background-color: #ffffff;
+    width: 80%;
+    height: 95%;
+    z-index: 99999;
+    border: solid 1px #93979B;
+    align-self: center;
+    border-radius: 3px;
+    background-image: url("../images/tunnel_view.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; }
+  .modal-nav {
+    align-self: center;
+    font-size: 5rem;
+    color: #93979B; }
+  .modal-info {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    color: #93979B;
+    font-size: 1.8rem; }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    color: #93979B;
+    font-size: 2.5rem;
+    font-weight: bold; }
