@@ -187,7 +187,8 @@ header {
     .category-heading p {
       margin: 0 0 .5rem 0; }
   .category h1 {
-    font-weight: normal; }
+    font-weight: normal;
+    text-transform: uppercase; }
   .category .items {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
@@ -220,6 +221,8 @@ header {
         transform: translate(0px, 0.5rem); }
       .category .item:hover small {
         opacity: 1; }
+    .category .item a, .category .item a:hover {
+      color: #F0FDFD; }
     .category .item small {
       position: absolute;
       top: 40%;
@@ -279,6 +282,25 @@ header {
     margin-top: .5rem;
     max-width: 10rem; }
 
+.about {
+  text-align: center; }
+  .about img {
+    max-width: 65%;
+    border: solid 1px #93979B;
+    margin-top: .5rem; }
+  .about h1, .about h2 {
+    font-weight: normal;
+    text-transform: uppercase; }
+  .about h1 {
+    margin-top: 2rem; }
+  .about h2 {
+    margin-top: 4rem; }
+  .about p {
+    max-width: 65%;
+    text-align: left;
+    display: block;
+    margin: 1rem auto; }
+
 .modal {
   position: fixed;
   top: 0;
@@ -301,7 +323,10 @@ header {
     background-image: url("../images/tunnel_view.jpg");
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center; }
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
   .modal-nav {
     align-self: center;
     font-size: 5rem;
@@ -318,3 +343,31 @@ header {
     color: #93979B;
     font-size: 2.5rem;
     font-weight: bold; }
+  .modal .meta-data {
+    background-color: rgba(255, 255, 255, 0.75);
+    width: 50%;
+    border: solid 1px #93979B;
+    padding: 1rem 1.8rem;
+    min-height: 50%;
+    max-height: 70%;
+    border-radius: 3px;
+    align-self: center;
+    overflow: scroll;
+    position: relative; }
+    .modal .meta-data h2 {
+      text-transform: uppercase;
+      margin: 0 0 .3rem 0; }
+    .modal .meta-data table {
+      margin-top: .5rem;
+      width: 100%;
+      font-size: .9rem; }
+    .modal .meta-data th, .modal .meta-data td {
+      border: solid 1px #93979B;
+      padding: .5rem; }
+    .modal .meta-data th {
+      text-align: right; }
+    .modal .meta-data-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem; }
